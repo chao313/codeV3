@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demomaster.dao.TVoDAO">
+
+    <resultMap id="resultMap" type="demomaster.vo.TVoVo">
+        <result column="db_name" property="dbName"/>
+        <result column="db_table_name" property="dbTableName"/>
+        <result column="db_table_comment" property="dbTableComment"/>
+        <result column="package_name" property="packageName"/>
+        <result column="class_name" property="className"/>
+        <result column="file_name" property="fileName"/>
+        <result column="freemark_path" property="freemarkPath"/>
+        <result column="freemark_content" property="freemarkContent"/>
+        <result column="freemark_value" property="freemarkValue"/>
+        <result column="imports" property="imports"/>
+    </resultMap>
+
+    <insert id="insert"
+            parameterType="demomaster.vo.TVoVo">
+        INSERT INTO `t_vo`(
+        `db_name` ,
+        `db_table_name` ,
+        `db_table_comment` ,
+        `package_name` ,
+        `class_name` ,
+        `file_name` ,
+        `freemark_path` ,
+        `freemark_content` ,
+        `freemark_value` ,
+        `imports` 
+        )VALUE(
+          #{dbName}  ,
+          #{dbTableName}  ,
+          #{dbTableComment}  ,
+          #{packageName}  ,
+          #{className}  ,
+          #{fileName}  ,
+          #{freemarkPath}  ,
+          #{freemarkContent}  ,
+          #{freemarkValue}  ,
+          #{imports}  
+        )
+    </insert>
+
+    <insert id="inserts"
+            parameterType="java.util.List">
+        INSERT INTO `t_vo`(
+        `db_name`,
+        `db_table_name`,
+        `db_table_comment`,
+        `package_name`,
+        `class_name`,
+        `file_name`,
+        `freemark_path`,
+        `freemark_content`,
+        `freemark_value`,
+        `imports`
+        )VALUES
+        <foreach collection="vos" item="item" separator=",">
+            (
+            #{item.dbName},
+            #{item.dbTableName},
+            #{item.dbTableComment},
+            #{item.packageName},
+            #{item.className},
+            #{item.fileName},
+            #{item.freemarkPath},
+            #{item.freemarkContent},
+            #{item.freemarkValue},
+            #{item.imports}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryBase" resultMap="resultMap"
+            resultType="demomaster.vo.TVoVo"
+            parameterType="demomaster.vo.TVoVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `db_table_comment`,
+        `package_name`,
+        `class_name`,
+        `file_name`,
+        `freemark_path`,
+        `freemark_content`,
+        `freemark_value`,
+        `imports`
+        FROM `t_vo`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="dbTableName != null">
+                AND `db_table_name` = #{dbTableName}
+            </if>
+            <if test="dbTableComment != null">
+                AND `db_table_comment` = #{dbTableComment}
+            </if>
+            <if test="packageName != null">
+                AND `package_name` = #{packageName}
+            </if>
+            <if test="className != null">
+                AND `class_name` = #{className}
+            </if>
+            <if test="fileName != null">
+                AND `file_name` = #{fileName}
+            </if>
+            <if test="freemarkPath != null">
+                AND `freemark_path` = #{freemarkPath}
+            </if>
+            <if test="freemarkContent != null">
+                AND `freemark_content` = #{freemarkContent}
+            </if>
+            <if test="freemarkValue != null">
+                AND `freemark_value` = #{freemarkValue}
+            </if>
+            <if test="imports != null">
+                AND `imports` = #{imports}
+            </if>
+        </where>
+    </select>
+
+     <select id="queryMultiTerm" resultMap="resultMap"
+             resultType="demomaster.vo.TVoVo"
+             parameterType="demomaster.vo.TVoMultiTermVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `db_table_comment`,
+        `package_name`,
+        `class_name`,
+        `file_name`,
+        `freemark_path`,
+        `freemark_content`,
+        `freemark_value`,
+        `imports`
+        FROM `t_vo`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                 <if test="dbName._in != null">
+                     AND `db_name` in
+                     <foreach collection="db_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notIn != null">
+                     AND `db_name`  not in
+                     <foreach collection="db_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._like != null">
+                     <foreach collection="db_name._like" item="item">
+                       AND `db_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notLike != null">
+                     <foreach collection="db_name._notLike" item="item">
+                       AND `db_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._lt != null">
+                      AND `db_name` <![CDATA[ < ]]>  #{db_name._lt}
+                 </if>
+                  <if test="dbName._le != null">
+                      AND `db_name` <![CDATA[ <= ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._gt != null">
+                      AND `db_name` <![CDATA[ > ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._ge != null">
+                      AND `db_name` <![CDATA[ >= ]]>  #{{db_name._lt}
+                 </if>
+            </if>
+            <if test="dbTableName != null">
+                 <if test="dbTableName._in != null">
+                     AND `db_table_name` in
+                     <foreach collection="db_table_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._notIn != null">
+                     AND `db_table_name`  not in
+                     <foreach collection="db_table_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._like != null">
+                     <foreach collection="db_table_name._like" item="item">
+                       AND `db_table_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._notLike != null">
+                     <foreach collection="db_table_name._notLike" item="item">
+                       AND `db_table_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._regex != null">
+                     <foreach collection="db_table_name._regex" item="item">
+                       AND `db_table_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._regex != null">
+                     <foreach collection="db_table_name._regex" item="item">
+                       AND `db_table_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._lt != null">
+                      AND `db_table_name` <![CDATA[ < ]]>  #{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._le != null">
+                      AND `db_table_name` <![CDATA[ <= ]]>  #{{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._gt != null">
+                      AND `db_table_name` <![CDATA[ > ]]>  #{{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._ge != null">
+                      AND `db_table_name` <![CDATA[ >= ]]>  #{{db_table_name._lt}
+                 </if>
+            </if>
+            <if test="dbTableComment != null">
+                 <if test="dbTableComment._in != null">
+                     AND `db_table_comment` in
+                     <foreach collection="db_table_comment._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._notIn != null">
+                     AND `db_table_comment`  not in
+                     <foreach collection="db_table_comment._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._like != null">
+                     <foreach collection="db_table_comment._like" item="item">
+                       AND `db_table_comment` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._notLike != null">
+                     <foreach collection="db_table_comment._notLike" item="item">
+                       AND `db_table_comment` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._regex != null">
+                     <foreach collection="db_table_comment._regex" item="item">
+                       AND `db_table_comment` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._regex != null">
+                     <foreach collection="db_table_comment._regex" item="item">
+                       AND `db_table_comment` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableComment._lt != null">
+                      AND `db_table_comment` <![CDATA[ < ]]>  #{db_table_comment._lt}
+                 </if>
+                  <if test="dbTableComment._le != null">
+                      AND `db_table_comment` <![CDATA[ <= ]]>  #{{db_table_comment._lt}
+                 </if>
+                  <if test="dbTableComment._gt != null">
+                      AND `db_table_comment` <![CDATA[ > ]]>  #{{db_table_comment._lt}
+                 </if>
+                  <if test="dbTableComment._ge != null">
+                      AND `db_table_comment` <![CDATA[ >= ]]>  #{{db_table_comment._lt}
+                 </if>
+            </if>
+            <if test="packageName != null">
+                 <if test="packageName._in != null">
+                     AND `package_name` in
+                     <foreach collection="package_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._notIn != null">
+                     AND `package_name`  not in
+                     <foreach collection="package_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._like != null">
+                     <foreach collection="package_name._like" item="item">
+                       AND `package_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._notLike != null">
+                     <foreach collection="package_name._notLike" item="item">
+                       AND `package_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._regex != null">
+                     <foreach collection="package_name._regex" item="item">
+                       AND `package_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._regex != null">
+                     <foreach collection="package_name._regex" item="item">
+                       AND `package_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="packageName._lt != null">
+                      AND `package_name` <![CDATA[ < ]]>  #{package_name._lt}
+                 </if>
+                  <if test="packageName._le != null">
+                      AND `package_name` <![CDATA[ <= ]]>  #{{package_name._lt}
+                 </if>
+                  <if test="packageName._gt != null">
+                      AND `package_name` <![CDATA[ > ]]>  #{{package_name._lt}
+                 </if>
+                  <if test="packageName._ge != null">
+                      AND `package_name` <![CDATA[ >= ]]>  #{{package_name._lt}
+                 </if>
+            </if>
+            <if test="className != null">
+                 <if test="className._in != null">
+                     AND `class_name` in
+                     <foreach collection="class_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._notIn != null">
+                     AND `class_name`  not in
+                     <foreach collection="class_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._like != null">
+                     <foreach collection="class_name._like" item="item">
+                       AND `class_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._notLike != null">
+                     <foreach collection="class_name._notLike" item="item">
+                       AND `class_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._regex != null">
+                     <foreach collection="class_name._regex" item="item">
+                       AND `class_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._regex != null">
+                     <foreach collection="class_name._regex" item="item">
+                       AND `class_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="className._lt != null">
+                      AND `class_name` <![CDATA[ < ]]>  #{class_name._lt}
+                 </if>
+                  <if test="className._le != null">
+                      AND `class_name` <![CDATA[ <= ]]>  #{{class_name._lt}
+                 </if>
+                  <if test="className._gt != null">
+                      AND `class_name` <![CDATA[ > ]]>  #{{class_name._lt}
+                 </if>
+                  <if test="className._ge != null">
+                      AND `class_name` <![CDATA[ >= ]]>  #{{class_name._lt}
+                 </if>
+            </if>
+            <if test="fileName != null">
+                 <if test="fileName._in != null">
+                     AND `file_name` in
+                     <foreach collection="file_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._notIn != null">
+                     AND `file_name`  not in
+                     <foreach collection="file_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._like != null">
+                     <foreach collection="file_name._like" item="item">
+                       AND `file_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._notLike != null">
+                     <foreach collection="file_name._notLike" item="item">
+                       AND `file_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._regex != null">
+                     <foreach collection="file_name._regex" item="item">
+                       AND `file_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._regex != null">
+                     <foreach collection="file_name._regex" item="item">
+                       AND `file_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fileName._lt != null">
+                      AND `file_name` <![CDATA[ < ]]>  #{file_name._lt}
+                 </if>
+                  <if test="fileName._le != null">
+                      AND `file_name` <![CDATA[ <= ]]>  #{{file_name._lt}
+                 </if>
+                  <if test="fileName._gt != null">
+                      AND `file_name` <![CDATA[ > ]]>  #{{file_name._lt}
+                 </if>
+                  <if test="fileName._ge != null">
+                      AND `file_name` <![CDATA[ >= ]]>  #{{file_name._lt}
+                 </if>
+            </if>
+            <if test="freemarkPath != null">
+                 <if test="freemarkPath._in != null">
+                     AND `freemark_path` in
+                     <foreach collection="freemark_path._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._notIn != null">
+                     AND `freemark_path`  not in
+                     <foreach collection="freemark_path._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._like != null">
+                     <foreach collection="freemark_path._like" item="item">
+                       AND `freemark_path` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._notLike != null">
+                     <foreach collection="freemark_path._notLike" item="item">
+                       AND `freemark_path` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._regex != null">
+                     <foreach collection="freemark_path._regex" item="item">
+                       AND `freemark_path` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._regex != null">
+                     <foreach collection="freemark_path._regex" item="item">
+                       AND `freemark_path` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkPath._lt != null">
+                      AND `freemark_path` <![CDATA[ < ]]>  #{freemark_path._lt}
+                 </if>
+                  <if test="freemarkPath._le != null">
+                      AND `freemark_path` <![CDATA[ <= ]]>  #{{freemark_path._lt}
+                 </if>
+                  <if test="freemarkPath._gt != null">
+                      AND `freemark_path` <![CDATA[ > ]]>  #{{freemark_path._lt}
+                 </if>
+                  <if test="freemarkPath._ge != null">
+                      AND `freemark_path` <![CDATA[ >= ]]>  #{{freemark_path._lt}
+                 </if>
+            </if>
+            <if test="freemarkContent != null">
+                 <if test="freemarkContent._in != null">
+                     AND `freemark_content` in
+                     <foreach collection="freemark_content._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._notIn != null">
+                     AND `freemark_content`  not in
+                     <foreach collection="freemark_content._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._like != null">
+                     <foreach collection="freemark_content._like" item="item">
+                       AND `freemark_content` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._notLike != null">
+                     <foreach collection="freemark_content._notLike" item="item">
+                       AND `freemark_content` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._regex != null">
+                     <foreach collection="freemark_content._regex" item="item">
+                       AND `freemark_content` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._regex != null">
+                     <foreach collection="freemark_content._regex" item="item">
+                       AND `freemark_content` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkContent._lt != null">
+                      AND `freemark_content` <![CDATA[ < ]]>  #{freemark_content._lt}
+                 </if>
+                  <if test="freemarkContent._le != null">
+                      AND `freemark_content` <![CDATA[ <= ]]>  #{{freemark_content._lt}
+                 </if>
+                  <if test="freemarkContent._gt != null">
+                      AND `freemark_content` <![CDATA[ > ]]>  #{{freemark_content._lt}
+                 </if>
+                  <if test="freemarkContent._ge != null">
+                      AND `freemark_content` <![CDATA[ >= ]]>  #{{freemark_content._lt}
+                 </if>
+            </if>
+            <if test="freemarkValue != null">
+                 <if test="freemarkValue._in != null">
+                     AND `freemark_value` in
+                     <foreach collection="freemark_value._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._notIn != null">
+                     AND `freemark_value`  not in
+                     <foreach collection="freemark_value._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._like != null">
+                     <foreach collection="freemark_value._like" item="item">
+                       AND `freemark_value` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._notLike != null">
+                     <foreach collection="freemark_value._notLike" item="item">
+                       AND `freemark_value` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._regex != null">
+                     <foreach collection="freemark_value._regex" item="item">
+                       AND `freemark_value` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._regex != null">
+                     <foreach collection="freemark_value._regex" item="item">
+                       AND `freemark_value` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="freemarkValue._lt != null">
+                      AND `freemark_value` <![CDATA[ < ]]>  #{freemark_value._lt}
+                 </if>
+                  <if test="freemarkValue._le != null">
+                      AND `freemark_value` <![CDATA[ <= ]]>  #{{freemark_value._lt}
+                 </if>
+                  <if test="freemarkValue._gt != null">
+                      AND `freemark_value` <![CDATA[ > ]]>  #{{freemark_value._lt}
+                 </if>
+                  <if test="freemarkValue._ge != null">
+                      AND `freemark_value` <![CDATA[ >= ]]>  #{{freemark_value._lt}
+                 </if>
+            </if>
+            <if test="imports != null">
+                 <if test="imports._in != null">
+                     AND `imports` in
+                     <foreach collection="imports._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._notIn != null">
+                     AND `imports`  not in
+                     <foreach collection="imports._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._like != null">
+                     <foreach collection="imports._like" item="item">
+                       AND `imports` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._notLike != null">
+                     <foreach collection="imports._notLike" item="item">
+                       AND `imports` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._regex != null">
+                     <foreach collection="imports._regex" item="item">
+                       AND `imports` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._regex != null">
+                     <foreach collection="imports._regex" item="item">
+                       AND `imports` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="imports._lt != null">
+                      AND `imports` <![CDATA[ < ]]>  #{imports._lt}
+                 </if>
+                  <if test="imports._le != null">
+                      AND `imports` <![CDATA[ <= ]]>  #{{imports._lt}
+                 </if>
+                  <if test="imports._gt != null">
+                      AND `imports` <![CDATA[ > ]]>  #{{imports._lt}
+                 </if>
+                  <if test="imports._ge != null">
+                      AND `imports` <![CDATA[ >= ]]>  #{{imports._lt}
+                 </if>
+            </if>
+        </where>
+        </select>
+
+    <update id="updateBase"
+            parameterType="demomaster.vo.TVoVo">
+        UPDATE `t_vo`
+        <set>
+            <if test="source.dbName != null">
+                `db_name` = #{source.dbName},
+            </if>
+            <if test="source.dbTableName != null">
+                `db_table_name` = #{source.dbTableName},
+            </if>
+            <if test="source.dbTableComment != null">
+                `db_table_comment` = #{source.dbTableComment},
+            </if>
+            <if test="source.packageName != null">
+                `package_name` = #{source.packageName},
+            </if>
+            <if test="source.className != null">
+                `class_name` = #{source.className},
+            </if>
+            <if test="source.fileName != null">
+                `file_name` = #{source.fileName},
+            </if>
+            <if test="source.freemarkPath != null">
+                `freemark_path` = #{source.freemarkPath},
+            </if>
+            <if test="source.freemarkContent != null">
+                `freemark_content` = #{source.freemarkContent},
+            </if>
+            <if test="source.freemarkValue != null">
+                `freemark_value` = #{source.freemarkValue},
+            </if>
+            <if test="source.imports != null">
+                `imports` = #{source.imports}
+            </if>
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.dbTableName != null">
+                AND `db_table_name` = #{target.dbTableName}
+            </if>
+            <if test="target.dbTableComment != null">
+                AND `db_table_comment` = #{target.dbTableComment}
+            </if>
+            <if test="target.packageName != null">
+                AND `package_name` = #{target.packageName}
+            </if>
+            <if test="target.className != null">
+                AND `class_name` = #{target.className}
+            </if>
+            <if test="target.fileName != null">
+                AND `file_name` = #{target.fileName}
+            </if>
+            <if test="target.freemarkPath != null">
+                AND `freemark_path` = #{target.freemarkPath}
+            </if>
+            <if test="target.freemarkContent != null">
+                AND `freemark_content` = #{target.freemarkContent}
+            </if>
+            <if test="target.freemarkValue != null">
+                AND `freemark_value` = #{target.freemarkValue}
+            </if>
+            <if test="target.imports != null">
+                AND `imports` = #{target.imports}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateBaseIncludeNull"
+            parameterType="demomaster.vo.TVoVo">
+        UPDATE `t_vo`
+        <set>
+            `db_name` = #{source.dbName},
+            `db_table_name` = #{source.dbTableName},
+            `db_table_comment` = #{source.dbTableComment},
+            `package_name` = #{source.packageName},
+            `class_name` = #{source.className},
+            `file_name` = #{source.fileName},
+            `freemark_path` = #{source.freemarkPath},
+            `freemark_content` = #{source.freemarkContent},
+            `freemark_value` = #{source.freemarkValue},
+            `imports` = #{source.imports}
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.dbTableName != null">
+                AND `db_table_name` = #{target.dbTableName}
+            </if>
+            <if test="target.dbTableComment != null">
+                AND `db_table_comment` = #{target.dbTableComment}
+            </if>
+            <if test="target.packageName != null">
+                AND `package_name` = #{target.packageName}
+            </if>
+            <if test="target.className != null">
+                AND `class_name` = #{target.className}
+            </if>
+            <if test="target.fileName != null">
+                AND `file_name` = #{target.fileName}
+            </if>
+            <if test="target.freemarkPath != null">
+                AND `freemark_path` = #{target.freemarkPath}
+            </if>
+            <if test="target.freemarkContent != null">
+                AND `freemark_content` = #{target.freemarkContent}
+            </if>
+            <if test="target.freemarkValue != null">
+                AND `freemark_value` = #{target.freemarkValue}
+            </if>
+            <if test="target.imports != null">
+                AND `imports` = #{target.imports}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteBase"
+            parameterType="demomaster.vo.TVoVo">
+        DELETE FROM `t_vo`
+        <where>
+            1 =1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="dbTableName != null">
+                AND `db_table_name` = #{dbTableName}
+            </if>
+            <if test="dbTableComment != null">
+                AND `db_table_comment` = #{dbTableComment}
+            </if>
+            <if test="packageName != null">
+                AND `package_name` = #{packageName}
+            </if>
+            <if test="className != null">
+                AND `class_name` = #{className}
+            </if>
+            <if test="fileName != null">
+                AND `file_name` = #{fileName}
+            </if>
+            <if test="freemarkPath != null">
+                AND `freemark_path` = #{freemarkPath}
+            </if>
+            <if test="freemarkContent != null">
+                AND `freemark_content` = #{freemarkContent}
+            </if>
+            <if test="freemarkValue != null">
+                AND `freemark_value` = #{freemarkValue}
+            </if>
+            <if test="imports != null">
+                AND `imports` = #{imports}
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="queryByPrimaryKey" resultMap="resultMap"
+            resultType="demomaster.vo.TVoVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `db_table_comment`,
+        `package_name`,
+        `class_name`,
+        `file_name`,
+        `freemark_path`,
+        `freemark_content`,
+        `freemark_value`,
+        `imports`
+        FROM `t_vo`
+        <where>
+            1 =1
+            AND `db_name` = #{dbName}
+            AND `db_table_name` = #{dbTableName}
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM `t_vo`
+        <where>
+            1 = 1
+               AND `db_name` = #{dbName}
+               AND `db_table_name` = #{dbTableName}
+        </where>
+    </delete>
+
+    <update id="updateByPrimaryKey"
+            parameterType="demomaster.vo.TVoVo">
+        UPDATE `t_vo`
+        <set>
+               <if test="source.dbTableComment != null">
+                   `db_table_comment` = #{source.dbTableComment},
+               </if>
+               <if test="source.packageName != null">
+                   `package_name` = #{source.packageName},
+               </if>
+               <if test="source.className != null">
+                   `class_name` = #{source.className},
+               </if>
+               <if test="source.fileName != null">
+                   `file_name` = #{source.fileName},
+               </if>
+               <if test="source.freemarkPath != null">
+                   `freemark_path` = #{source.freemarkPath},
+               </if>
+               <if test="source.freemarkContent != null">
+                   `freemark_content` = #{source.freemarkContent},
+               </if>
+               <if test="source.freemarkValue != null">
+                   `freemark_value` = #{source.freemarkValue},
+               </if>
+               <if test="source.imports != null">
+                   `imports` = #{source.imports}
+               </if>
+        </set>
+        <where>
+            1 =1
+               AND `db_name` = #{target.dbName}
+               AND `db_table_name` = #{target.dbTableName}
+        </where>
+    </update>
+
+</mapper>

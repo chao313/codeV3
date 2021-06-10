@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demomaster.dao.TFieldDAO">
+
+    <resultMap id="resultMap" type="demomaster.vo.TFieldVo">
+        <result column="db_name" property="dbName"/>
+        <result column="db_table_name" property="dbTableName"/>
+        <result column="field_name" property="fieldName"/>
+        <result column="field_java_name" property="fieldJavaName"/>
+        <result column="field_type" property="fieldType"/>
+        <result column="field_java_type" property="fieldJavaType"/>
+        <result column="field_comment" property="fieldComment"/>
+        <result column="field_is_not_null" property="fieldIsNotNull"/>
+        <result column="field_is_pri" property="fieldIsPri"/>
+        <result column="field_china_name" property="fieldChinaName"/>
+        <result column="field_enum_value" property="fieldEnumValue"/>
+        <result column="field_is_business_uniq" property="fieldIsBusinessUniq"/>
+        <result column="field_is_query" property="fieldIsQuery"/>
+        <result column="field_is_return" property="fieldIsReturn"/>
+        <result column="field_is_insert" property="fieldIsInsert"/>
+        <result column="field_is_auto_increment" property="fieldIsAutoIncrement"/>
+    </resultMap>
+
+    <insert id="insert"
+            parameterType="demomaster.vo.TFieldVo">
+        INSERT INTO `t_field`(
+        `db_name` ,
+        `db_table_name` ,
+        `field_name` ,
+        `field_java_name` ,
+        `field_type` ,
+        `field_java_type` ,
+        `field_comment` ,
+        `field_is_not_null` ,
+        `field_is_pri` ,
+        `field_china_name` ,
+        `field_enum_value` ,
+        `field_is_business_uniq` ,
+        `field_is_query` ,
+        `field_is_return` ,
+        `field_is_insert` ,
+        `field_is_auto_increment` 
+        )VALUE(
+          #{dbName}  ,
+          #{dbTableName}  ,
+          #{fieldName}  ,
+          #{fieldJavaName}  ,
+          #{fieldType}  ,
+          #{fieldJavaType}  ,
+          #{fieldComment}  ,
+          #{fieldIsNotNull}  ,
+          #{fieldIsPri}  ,
+          #{fieldChinaName}  ,
+          #{fieldEnumValue}  ,
+          #{fieldIsBusinessUniq}  ,
+          #{fieldIsQuery}  ,
+          #{fieldIsReturn}  ,
+          #{fieldIsInsert}  ,
+          #{fieldIsAutoIncrement}  
+        )
+    </insert>
+
+    <insert id="inserts"
+            parameterType="java.util.List">
+        INSERT INTO `t_field`(
+        `db_name`,
+        `db_table_name`,
+        `field_name`,
+        `field_java_name`,
+        `field_type`,
+        `field_java_type`,
+        `field_comment`,
+        `field_is_not_null`,
+        `field_is_pri`,
+        `field_china_name`,
+        `field_enum_value`,
+        `field_is_business_uniq`,
+        `field_is_query`,
+        `field_is_return`,
+        `field_is_insert`,
+        `field_is_auto_increment`
+        )VALUES
+        <foreach collection="vos" item="item" separator=",">
+            (
+            #{item.dbName},
+            #{item.dbTableName},
+            #{item.fieldName},
+            #{item.fieldJavaName},
+            #{item.fieldType},
+            #{item.fieldJavaType},
+            #{item.fieldComment},
+            #{item.fieldIsNotNull},
+            #{item.fieldIsPri},
+            #{item.fieldChinaName},
+            #{item.fieldEnumValue},
+            #{item.fieldIsBusinessUniq},
+            #{item.fieldIsQuery},
+            #{item.fieldIsReturn},
+            #{item.fieldIsInsert},
+            #{item.fieldIsAutoIncrement}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryBase" resultMap="resultMap"
+            resultType="demomaster.vo.TFieldVo"
+            parameterType="demomaster.vo.TFieldVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `field_name`,
+        `field_java_name`,
+        `field_type`,
+        `field_java_type`,
+        `field_comment`,
+        `field_is_not_null`,
+        `field_is_pri`,
+        `field_china_name`,
+        `field_enum_value`,
+        `field_is_business_uniq`,
+        `field_is_query`,
+        `field_is_return`,
+        `field_is_insert`,
+        `field_is_auto_increment`
+        FROM `t_field`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="dbTableName != null">
+                AND `db_table_name` = #{dbTableName}
+            </if>
+            <if test="fieldName != null">
+                AND `field_name` = #{fieldName}
+            </if>
+            <if test="fieldJavaName != null">
+                AND `field_java_name` = #{fieldJavaName}
+            </if>
+            <if test="fieldType != null">
+                AND `field_type` = #{fieldType}
+            </if>
+            <if test="fieldJavaType != null">
+                AND `field_java_type` = #{fieldJavaType}
+            </if>
+            <if test="fieldComment != null">
+                AND `field_comment` = #{fieldComment}
+            </if>
+            <if test="fieldIsNotNull != null">
+                AND `field_is_not_null` = #{fieldIsNotNull}
+            </if>
+            <if test="fieldIsPri != null">
+                AND `field_is_pri` = #{fieldIsPri}
+            </if>
+            <if test="fieldChinaName != null">
+                AND `field_china_name` = #{fieldChinaName}
+            </if>
+            <if test="fieldEnumValue != null">
+                AND `field_enum_value` = #{fieldEnumValue}
+            </if>
+            <if test="fieldIsBusinessUniq != null">
+                AND `field_is_business_uniq` = #{fieldIsBusinessUniq}
+            </if>
+            <if test="fieldIsQuery != null">
+                AND `field_is_query` = #{fieldIsQuery}
+            </if>
+            <if test="fieldIsReturn != null">
+                AND `field_is_return` = #{fieldIsReturn}
+            </if>
+            <if test="fieldIsInsert != null">
+                AND `field_is_insert` = #{fieldIsInsert}
+            </if>
+            <if test="fieldIsAutoIncrement != null">
+                AND `field_is_auto_increment` = #{fieldIsAutoIncrement}
+            </if>
+        </where>
+    </select>
+
+     <select id="queryMultiTerm" resultMap="resultMap"
+             resultType="demomaster.vo.TFieldVo"
+             parameterType="demomaster.vo.TFieldMultiTermVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `field_name`,
+        `field_java_name`,
+        `field_type`,
+        `field_java_type`,
+        `field_comment`,
+        `field_is_not_null`,
+        `field_is_pri`,
+        `field_china_name`,
+        `field_enum_value`,
+        `field_is_business_uniq`,
+        `field_is_query`,
+        `field_is_return`,
+        `field_is_insert`,
+        `field_is_auto_increment`
+        FROM `t_field`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                 <if test="dbName._in != null">
+                     AND `db_name` in
+                     <foreach collection="db_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notIn != null">
+                     AND `db_name`  not in
+                     <foreach collection="db_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._like != null">
+                     <foreach collection="db_name._like" item="item">
+                       AND `db_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notLike != null">
+                     <foreach collection="db_name._notLike" item="item">
+                       AND `db_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._lt != null">
+                      AND `db_name` <![CDATA[ < ]]>  #{db_name._lt}
+                 </if>
+                  <if test="dbName._le != null">
+                      AND `db_name` <![CDATA[ <= ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._gt != null">
+                      AND `db_name` <![CDATA[ > ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._ge != null">
+                      AND `db_name` <![CDATA[ >= ]]>  #{{db_name._lt}
+                 </if>
+            </if>
+            <if test="dbTableName != null">
+                 <if test="dbTableName._in != null">
+                     AND `db_table_name` in
+                     <foreach collection="db_table_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._notIn != null">
+                     AND `db_table_name`  not in
+                     <foreach collection="db_table_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._like != null">
+                     <foreach collection="db_table_name._like" item="item">
+                       AND `db_table_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._notLike != null">
+                     <foreach collection="db_table_name._notLike" item="item">
+                       AND `db_table_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._regex != null">
+                     <foreach collection="db_table_name._regex" item="item">
+                       AND `db_table_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._regex != null">
+                     <foreach collection="db_table_name._regex" item="item">
+                       AND `db_table_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbTableName._lt != null">
+                      AND `db_table_name` <![CDATA[ < ]]>  #{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._le != null">
+                      AND `db_table_name` <![CDATA[ <= ]]>  #{{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._gt != null">
+                      AND `db_table_name` <![CDATA[ > ]]>  #{{db_table_name._lt}
+                 </if>
+                  <if test="dbTableName._ge != null">
+                      AND `db_table_name` <![CDATA[ >= ]]>  #{{db_table_name._lt}
+                 </if>
+            </if>
+            <if test="fieldName != null">
+                 <if test="fieldName._in != null">
+                     AND `field_name` in
+                     <foreach collection="field_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._notIn != null">
+                     AND `field_name`  not in
+                     <foreach collection="field_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._like != null">
+                     <foreach collection="field_name._like" item="item">
+                       AND `field_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._notLike != null">
+                     <foreach collection="field_name._notLike" item="item">
+                       AND `field_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._regex != null">
+                     <foreach collection="field_name._regex" item="item">
+                       AND `field_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._regex != null">
+                     <foreach collection="field_name._regex" item="item">
+                       AND `field_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldName._lt != null">
+                      AND `field_name` <![CDATA[ < ]]>  #{field_name._lt}
+                 </if>
+                  <if test="fieldName._le != null">
+                      AND `field_name` <![CDATA[ <= ]]>  #{{field_name._lt}
+                 </if>
+                  <if test="fieldName._gt != null">
+                      AND `field_name` <![CDATA[ > ]]>  #{{field_name._lt}
+                 </if>
+                  <if test="fieldName._ge != null">
+                      AND `field_name` <![CDATA[ >= ]]>  #{{field_name._lt}
+                 </if>
+            </if>
+            <if test="fieldJavaName != null">
+                 <if test="fieldJavaName._in != null">
+                     AND `field_java_name` in
+                     <foreach collection="field_java_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._notIn != null">
+                     AND `field_java_name`  not in
+                     <foreach collection="field_java_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._like != null">
+                     <foreach collection="field_java_name._like" item="item">
+                       AND `field_java_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._notLike != null">
+                     <foreach collection="field_java_name._notLike" item="item">
+                       AND `field_java_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._regex != null">
+                     <foreach collection="field_java_name._regex" item="item">
+                       AND `field_java_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._regex != null">
+                     <foreach collection="field_java_name._regex" item="item">
+                       AND `field_java_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaName._lt != null">
+                      AND `field_java_name` <![CDATA[ < ]]>  #{field_java_name._lt}
+                 </if>
+                  <if test="fieldJavaName._le != null">
+                      AND `field_java_name` <![CDATA[ <= ]]>  #{{field_java_name._lt}
+                 </if>
+                  <if test="fieldJavaName._gt != null">
+                      AND `field_java_name` <![CDATA[ > ]]>  #{{field_java_name._lt}
+                 </if>
+                  <if test="fieldJavaName._ge != null">
+                      AND `field_java_name` <![CDATA[ >= ]]>  #{{field_java_name._lt}
+                 </if>
+            </if>
+            <if test="fieldType != null">
+                 <if test="fieldType._in != null">
+                     AND `field_type` in
+                     <foreach collection="field_type._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._notIn != null">
+                     AND `field_type`  not in
+                     <foreach collection="field_type._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._like != null">
+                     <foreach collection="field_type._like" item="item">
+                       AND `field_type` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._notLike != null">
+                     <foreach collection="field_type._notLike" item="item">
+                       AND `field_type` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._regex != null">
+                     <foreach collection="field_type._regex" item="item">
+                       AND `field_type` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._regex != null">
+                     <foreach collection="field_type._regex" item="item">
+                       AND `field_type` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldType._lt != null">
+                      AND `field_type` <![CDATA[ < ]]>  #{field_type._lt}
+                 </if>
+                  <if test="fieldType._le != null">
+                      AND `field_type` <![CDATA[ <= ]]>  #{{field_type._lt}
+                 </if>
+                  <if test="fieldType._gt != null">
+                      AND `field_type` <![CDATA[ > ]]>  #{{field_type._lt}
+                 </if>
+                  <if test="fieldType._ge != null">
+                      AND `field_type` <![CDATA[ >= ]]>  #{{field_type._lt}
+                 </if>
+            </if>
+            <if test="fieldJavaType != null">
+                 <if test="fieldJavaType._in != null">
+                     AND `field_java_type` in
+                     <foreach collection="field_java_type._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._notIn != null">
+                     AND `field_java_type`  not in
+                     <foreach collection="field_java_type._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._like != null">
+                     <foreach collection="field_java_type._like" item="item">
+                       AND `field_java_type` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._notLike != null">
+                     <foreach collection="field_java_type._notLike" item="item">
+                       AND `field_java_type` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._regex != null">
+                     <foreach collection="field_java_type._regex" item="item">
+                       AND `field_java_type` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._regex != null">
+                     <foreach collection="field_java_type._regex" item="item">
+                       AND `field_java_type` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldJavaType._lt != null">
+                      AND `field_java_type` <![CDATA[ < ]]>  #{field_java_type._lt}
+                 </if>
+                  <if test="fieldJavaType._le != null">
+                      AND `field_java_type` <![CDATA[ <= ]]>  #{{field_java_type._lt}
+                 </if>
+                  <if test="fieldJavaType._gt != null">
+                      AND `field_java_type` <![CDATA[ > ]]>  #{{field_java_type._lt}
+                 </if>
+                  <if test="fieldJavaType._ge != null">
+                      AND `field_java_type` <![CDATA[ >= ]]>  #{{field_java_type._lt}
+                 </if>
+            </if>
+            <if test="fieldComment != null">
+                 <if test="fieldComment._in != null">
+                     AND `field_comment` in
+                     <foreach collection="field_comment._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._notIn != null">
+                     AND `field_comment`  not in
+                     <foreach collection="field_comment._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._like != null">
+                     <foreach collection="field_comment._like" item="item">
+                       AND `field_comment` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._notLike != null">
+                     <foreach collection="field_comment._notLike" item="item">
+                       AND `field_comment` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._regex != null">
+                     <foreach collection="field_comment._regex" item="item">
+                       AND `field_comment` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._regex != null">
+                     <foreach collection="field_comment._regex" item="item">
+                       AND `field_comment` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldComment._lt != null">
+                      AND `field_comment` <![CDATA[ < ]]>  #{field_comment._lt}
+                 </if>
+                  <if test="fieldComment._le != null">
+                      AND `field_comment` <![CDATA[ <= ]]>  #{{field_comment._lt}
+                 </if>
+                  <if test="fieldComment._gt != null">
+                      AND `field_comment` <![CDATA[ > ]]>  #{{field_comment._lt}
+                 </if>
+                  <if test="fieldComment._ge != null">
+                      AND `field_comment` <![CDATA[ >= ]]>  #{{field_comment._lt}
+                 </if>
+            </if>
+            <if test="fieldIsNotNull != null">
+                 <if test="fieldIsNotNull._in != null">
+                     AND `field_is_not_null` in
+                     <foreach collection="field_is_not_null._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._notIn != null">
+                     AND `field_is_not_null`  not in
+                     <foreach collection="field_is_not_null._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._like != null">
+                     <foreach collection="field_is_not_null._like" item="item">
+                       AND `field_is_not_null` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._notLike != null">
+                     <foreach collection="field_is_not_null._notLike" item="item">
+                       AND `field_is_not_null` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._regex != null">
+                     <foreach collection="field_is_not_null._regex" item="item">
+                       AND `field_is_not_null` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._regex != null">
+                     <foreach collection="field_is_not_null._regex" item="item">
+                       AND `field_is_not_null` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsNotNull._lt != null">
+                      AND `field_is_not_null` <![CDATA[ < ]]>  #{field_is_not_null._lt}
+                 </if>
+                  <if test="fieldIsNotNull._le != null">
+                      AND `field_is_not_null` <![CDATA[ <= ]]>  #{{field_is_not_null._lt}
+                 </if>
+                  <if test="fieldIsNotNull._gt != null">
+                      AND `field_is_not_null` <![CDATA[ > ]]>  #{{field_is_not_null._lt}
+                 </if>
+                  <if test="fieldIsNotNull._ge != null">
+                      AND `field_is_not_null` <![CDATA[ >= ]]>  #{{field_is_not_null._lt}
+                 </if>
+            </if>
+            <if test="fieldIsPri != null">
+                 <if test="fieldIsPri._in != null">
+                     AND `field_is_pri` in
+                     <foreach collection="field_is_pri._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._notIn != null">
+                     AND `field_is_pri`  not in
+                     <foreach collection="field_is_pri._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._like != null">
+                     <foreach collection="field_is_pri._like" item="item">
+                       AND `field_is_pri` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._notLike != null">
+                     <foreach collection="field_is_pri._notLike" item="item">
+                       AND `field_is_pri` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._regex != null">
+                     <foreach collection="field_is_pri._regex" item="item">
+                       AND `field_is_pri` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._regex != null">
+                     <foreach collection="field_is_pri._regex" item="item">
+                       AND `field_is_pri` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsPri._lt != null">
+                      AND `field_is_pri` <![CDATA[ < ]]>  #{field_is_pri._lt}
+                 </if>
+                  <if test="fieldIsPri._le != null">
+                      AND `field_is_pri` <![CDATA[ <= ]]>  #{{field_is_pri._lt}
+                 </if>
+                  <if test="fieldIsPri._gt != null">
+                      AND `field_is_pri` <![CDATA[ > ]]>  #{{field_is_pri._lt}
+                 </if>
+                  <if test="fieldIsPri._ge != null">
+                      AND `field_is_pri` <![CDATA[ >= ]]>  #{{field_is_pri._lt}
+                 </if>
+            </if>
+            <if test="fieldChinaName != null">
+                 <if test="fieldChinaName._in != null">
+                     AND `field_china_name` in
+                     <foreach collection="field_china_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._notIn != null">
+                     AND `field_china_name`  not in
+                     <foreach collection="field_china_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._like != null">
+                     <foreach collection="field_china_name._like" item="item">
+                       AND `field_china_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._notLike != null">
+                     <foreach collection="field_china_name._notLike" item="item">
+                       AND `field_china_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._regex != null">
+                     <foreach collection="field_china_name._regex" item="item">
+                       AND `field_china_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._regex != null">
+                     <foreach collection="field_china_name._regex" item="item">
+                       AND `field_china_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldChinaName._lt != null">
+                      AND `field_china_name` <![CDATA[ < ]]>  #{field_china_name._lt}
+                 </if>
+                  <if test="fieldChinaName._le != null">
+                      AND `field_china_name` <![CDATA[ <= ]]>  #{{field_china_name._lt}
+                 </if>
+                  <if test="fieldChinaName._gt != null">
+                      AND `field_china_name` <![CDATA[ > ]]>  #{{field_china_name._lt}
+                 </if>
+                  <if test="fieldChinaName._ge != null">
+                      AND `field_china_name` <![CDATA[ >= ]]>  #{{field_china_name._lt}
+                 </if>
+            </if>
+            <if test="fieldEnumValue != null">
+                 <if test="fieldEnumValue._in != null">
+                     AND `field_enum_value` in
+                     <foreach collection="field_enum_value._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._notIn != null">
+                     AND `field_enum_value`  not in
+                     <foreach collection="field_enum_value._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._like != null">
+                     <foreach collection="field_enum_value._like" item="item">
+                       AND `field_enum_value` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._notLike != null">
+                     <foreach collection="field_enum_value._notLike" item="item">
+                       AND `field_enum_value` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._regex != null">
+                     <foreach collection="field_enum_value._regex" item="item">
+                       AND `field_enum_value` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._regex != null">
+                     <foreach collection="field_enum_value._regex" item="item">
+                       AND `field_enum_value` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldEnumValue._lt != null">
+                      AND `field_enum_value` <![CDATA[ < ]]>  #{field_enum_value._lt}
+                 </if>
+                  <if test="fieldEnumValue._le != null">
+                      AND `field_enum_value` <![CDATA[ <= ]]>  #{{field_enum_value._lt}
+                 </if>
+                  <if test="fieldEnumValue._gt != null">
+                      AND `field_enum_value` <![CDATA[ > ]]>  #{{field_enum_value._lt}
+                 </if>
+                  <if test="fieldEnumValue._ge != null">
+                      AND `field_enum_value` <![CDATA[ >= ]]>  #{{field_enum_value._lt}
+                 </if>
+            </if>
+            <if test="fieldIsBusinessUniq != null">
+                 <if test="fieldIsBusinessUniq._in != null">
+                     AND `field_is_business_uniq` in
+                     <foreach collection="field_is_business_uniq._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._notIn != null">
+                     AND `field_is_business_uniq`  not in
+                     <foreach collection="field_is_business_uniq._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._like != null">
+                     <foreach collection="field_is_business_uniq._like" item="item">
+                       AND `field_is_business_uniq` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._notLike != null">
+                     <foreach collection="field_is_business_uniq._notLike" item="item">
+                       AND `field_is_business_uniq` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._regex != null">
+                     <foreach collection="field_is_business_uniq._regex" item="item">
+                       AND `field_is_business_uniq` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._regex != null">
+                     <foreach collection="field_is_business_uniq._regex" item="item">
+                       AND `field_is_business_uniq` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsBusinessUniq._lt != null">
+                      AND `field_is_business_uniq` <![CDATA[ < ]]>  #{field_is_business_uniq._lt}
+                 </if>
+                  <if test="fieldIsBusinessUniq._le != null">
+                      AND `field_is_business_uniq` <![CDATA[ <= ]]>  #{{field_is_business_uniq._lt}
+                 </if>
+                  <if test="fieldIsBusinessUniq._gt != null">
+                      AND `field_is_business_uniq` <![CDATA[ > ]]>  #{{field_is_business_uniq._lt}
+                 </if>
+                  <if test="fieldIsBusinessUniq._ge != null">
+                      AND `field_is_business_uniq` <![CDATA[ >= ]]>  #{{field_is_business_uniq._lt}
+                 </if>
+            </if>
+            <if test="fieldIsQuery != null">
+                 <if test="fieldIsQuery._in != null">
+                     AND `field_is_query` in
+                     <foreach collection="field_is_query._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._notIn != null">
+                     AND `field_is_query`  not in
+                     <foreach collection="field_is_query._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._like != null">
+                     <foreach collection="field_is_query._like" item="item">
+                       AND `field_is_query` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._notLike != null">
+                     <foreach collection="field_is_query._notLike" item="item">
+                       AND `field_is_query` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._regex != null">
+                     <foreach collection="field_is_query._regex" item="item">
+                       AND `field_is_query` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._regex != null">
+                     <foreach collection="field_is_query._regex" item="item">
+                       AND `field_is_query` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsQuery._lt != null">
+                      AND `field_is_query` <![CDATA[ < ]]>  #{field_is_query._lt}
+                 </if>
+                  <if test="fieldIsQuery._le != null">
+                      AND `field_is_query` <![CDATA[ <= ]]>  #{{field_is_query._lt}
+                 </if>
+                  <if test="fieldIsQuery._gt != null">
+                      AND `field_is_query` <![CDATA[ > ]]>  #{{field_is_query._lt}
+                 </if>
+                  <if test="fieldIsQuery._ge != null">
+                      AND `field_is_query` <![CDATA[ >= ]]>  #{{field_is_query._lt}
+                 </if>
+            </if>
+            <if test="fieldIsReturn != null">
+                 <if test="fieldIsReturn._in != null">
+                     AND `field_is_return` in
+                     <foreach collection="field_is_return._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._notIn != null">
+                     AND `field_is_return`  not in
+                     <foreach collection="field_is_return._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._like != null">
+                     <foreach collection="field_is_return._like" item="item">
+                       AND `field_is_return` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._notLike != null">
+                     <foreach collection="field_is_return._notLike" item="item">
+                       AND `field_is_return` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._regex != null">
+                     <foreach collection="field_is_return._regex" item="item">
+                       AND `field_is_return` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._regex != null">
+                     <foreach collection="field_is_return._regex" item="item">
+                       AND `field_is_return` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsReturn._lt != null">
+                      AND `field_is_return` <![CDATA[ < ]]>  #{field_is_return._lt}
+                 </if>
+                  <if test="fieldIsReturn._le != null">
+                      AND `field_is_return` <![CDATA[ <= ]]>  #{{field_is_return._lt}
+                 </if>
+                  <if test="fieldIsReturn._gt != null">
+                      AND `field_is_return` <![CDATA[ > ]]>  #{{field_is_return._lt}
+                 </if>
+                  <if test="fieldIsReturn._ge != null">
+                      AND `field_is_return` <![CDATA[ >= ]]>  #{{field_is_return._lt}
+                 </if>
+            </if>
+            <if test="fieldIsInsert != null">
+                 <if test="fieldIsInsert._in != null">
+                     AND `field_is_insert` in
+                     <foreach collection="field_is_insert._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._notIn != null">
+                     AND `field_is_insert`  not in
+                     <foreach collection="field_is_insert._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._like != null">
+                     <foreach collection="field_is_insert._like" item="item">
+                       AND `field_is_insert` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._notLike != null">
+                     <foreach collection="field_is_insert._notLike" item="item">
+                       AND `field_is_insert` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._regex != null">
+                     <foreach collection="field_is_insert._regex" item="item">
+                       AND `field_is_insert` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._regex != null">
+                     <foreach collection="field_is_insert._regex" item="item">
+                       AND `field_is_insert` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsInsert._lt != null">
+                      AND `field_is_insert` <![CDATA[ < ]]>  #{field_is_insert._lt}
+                 </if>
+                  <if test="fieldIsInsert._le != null">
+                      AND `field_is_insert` <![CDATA[ <= ]]>  #{{field_is_insert._lt}
+                 </if>
+                  <if test="fieldIsInsert._gt != null">
+                      AND `field_is_insert` <![CDATA[ > ]]>  #{{field_is_insert._lt}
+                 </if>
+                  <if test="fieldIsInsert._ge != null">
+                      AND `field_is_insert` <![CDATA[ >= ]]>  #{{field_is_insert._lt}
+                 </if>
+            </if>
+            <if test="fieldIsAutoIncrement != null">
+                 <if test="fieldIsAutoIncrement._in != null">
+                     AND `field_is_auto_increment` in
+                     <foreach collection="field_is_auto_increment._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._notIn != null">
+                     AND `field_is_auto_increment`  not in
+                     <foreach collection="field_is_auto_increment._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._like != null">
+                     <foreach collection="field_is_auto_increment._like" item="item">
+                       AND `field_is_auto_increment` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._notLike != null">
+                     <foreach collection="field_is_auto_increment._notLike" item="item">
+                       AND `field_is_auto_increment` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._regex != null">
+                     <foreach collection="field_is_auto_increment._regex" item="item">
+                       AND `field_is_auto_increment` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._regex != null">
+                     <foreach collection="field_is_auto_increment._regex" item="item">
+                       AND `field_is_auto_increment` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="fieldIsAutoIncrement._lt != null">
+                      AND `field_is_auto_increment` <![CDATA[ < ]]>  #{field_is_auto_increment._lt}
+                 </if>
+                  <if test="fieldIsAutoIncrement._le != null">
+                      AND `field_is_auto_increment` <![CDATA[ <= ]]>  #{{field_is_auto_increment._lt}
+                 </if>
+                  <if test="fieldIsAutoIncrement._gt != null">
+                      AND `field_is_auto_increment` <![CDATA[ > ]]>  #{{field_is_auto_increment._lt}
+                 </if>
+                  <if test="fieldIsAutoIncrement._ge != null">
+                      AND `field_is_auto_increment` <![CDATA[ >= ]]>  #{{field_is_auto_increment._lt}
+                 </if>
+            </if>
+        </where>
+        </select>
+
+    <update id="updateBase"
+            parameterType="demomaster.vo.TFieldVo">
+        UPDATE `t_field`
+        <set>
+            <if test="source.dbName != null">
+                `db_name` = #{source.dbName},
+            </if>
+            <if test="source.dbTableName != null">
+                `db_table_name` = #{source.dbTableName},
+            </if>
+            <if test="source.fieldName != null">
+                `field_name` = #{source.fieldName},
+            </if>
+            <if test="source.fieldJavaName != null">
+                `field_java_name` = #{source.fieldJavaName},
+            </if>
+            <if test="source.fieldType != null">
+                `field_type` = #{source.fieldType},
+            </if>
+            <if test="source.fieldJavaType != null">
+                `field_java_type` = #{source.fieldJavaType},
+            </if>
+            <if test="source.fieldComment != null">
+                `field_comment` = #{source.fieldComment},
+            </if>
+            <if test="source.fieldIsNotNull != null">
+                `field_is_not_null` = #{source.fieldIsNotNull},
+            </if>
+            <if test="source.fieldIsPri != null">
+                `field_is_pri` = #{source.fieldIsPri},
+            </if>
+            <if test="source.fieldChinaName != null">
+                `field_china_name` = #{source.fieldChinaName},
+            </if>
+            <if test="source.fieldEnumValue != null">
+                `field_enum_value` = #{source.fieldEnumValue},
+            </if>
+            <if test="source.fieldIsBusinessUniq != null">
+                `field_is_business_uniq` = #{source.fieldIsBusinessUniq},
+            </if>
+            <if test="source.fieldIsQuery != null">
+                `field_is_query` = #{source.fieldIsQuery},
+            </if>
+            <if test="source.fieldIsReturn != null">
+                `field_is_return` = #{source.fieldIsReturn},
+            </if>
+            <if test="source.fieldIsInsert != null">
+                `field_is_insert` = #{source.fieldIsInsert},
+            </if>
+            <if test="source.fieldIsAutoIncrement != null">
+                `field_is_auto_increment` = #{source.fieldIsAutoIncrement}
+            </if>
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.dbTableName != null">
+                AND `db_table_name` = #{target.dbTableName}
+            </if>
+            <if test="target.fieldName != null">
+                AND `field_name` = #{target.fieldName}
+            </if>
+            <if test="target.fieldJavaName != null">
+                AND `field_java_name` = #{target.fieldJavaName}
+            </if>
+            <if test="target.fieldType != null">
+                AND `field_type` = #{target.fieldType}
+            </if>
+            <if test="target.fieldJavaType != null">
+                AND `field_java_type` = #{target.fieldJavaType}
+            </if>
+            <if test="target.fieldComment != null">
+                AND `field_comment` = #{target.fieldComment}
+            </if>
+            <if test="target.fieldIsNotNull != null">
+                AND `field_is_not_null` = #{target.fieldIsNotNull}
+            </if>
+            <if test="target.fieldIsPri != null">
+                AND `field_is_pri` = #{target.fieldIsPri}
+            </if>
+            <if test="target.fieldChinaName != null">
+                AND `field_china_name` = #{target.fieldChinaName}
+            </if>
+            <if test="target.fieldEnumValue != null">
+                AND `field_enum_value` = #{target.fieldEnumValue}
+            </if>
+            <if test="target.fieldIsBusinessUniq != null">
+                AND `field_is_business_uniq` = #{target.fieldIsBusinessUniq}
+            </if>
+            <if test="target.fieldIsQuery != null">
+                AND `field_is_query` = #{target.fieldIsQuery}
+            </if>
+            <if test="target.fieldIsReturn != null">
+                AND `field_is_return` = #{target.fieldIsReturn}
+            </if>
+            <if test="target.fieldIsInsert != null">
+                AND `field_is_insert` = #{target.fieldIsInsert}
+            </if>
+            <if test="target.fieldIsAutoIncrement != null">
+                AND `field_is_auto_increment` = #{target.fieldIsAutoIncrement}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateBaseIncludeNull"
+            parameterType="demomaster.vo.TFieldVo">
+        UPDATE `t_field`
+        <set>
+            `db_name` = #{source.dbName},
+            `db_table_name` = #{source.dbTableName},
+            `field_name` = #{source.fieldName},
+            `field_java_name` = #{source.fieldJavaName},
+            `field_type` = #{source.fieldType},
+            `field_java_type` = #{source.fieldJavaType},
+            `field_comment` = #{source.fieldComment},
+            `field_is_not_null` = #{source.fieldIsNotNull},
+            `field_is_pri` = #{source.fieldIsPri},
+            `field_china_name` = #{source.fieldChinaName},
+            `field_enum_value` = #{source.fieldEnumValue},
+            `field_is_business_uniq` = #{source.fieldIsBusinessUniq},
+            `field_is_query` = #{source.fieldIsQuery},
+            `field_is_return` = #{source.fieldIsReturn},
+            `field_is_insert` = #{source.fieldIsInsert},
+            `field_is_auto_increment` = #{source.fieldIsAutoIncrement}
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.dbTableName != null">
+                AND `db_table_name` = #{target.dbTableName}
+            </if>
+            <if test="target.fieldName != null">
+                AND `field_name` = #{target.fieldName}
+            </if>
+            <if test="target.fieldJavaName != null">
+                AND `field_java_name` = #{target.fieldJavaName}
+            </if>
+            <if test="target.fieldType != null">
+                AND `field_type` = #{target.fieldType}
+            </if>
+            <if test="target.fieldJavaType != null">
+                AND `field_java_type` = #{target.fieldJavaType}
+            </if>
+            <if test="target.fieldComment != null">
+                AND `field_comment` = #{target.fieldComment}
+            </if>
+            <if test="target.fieldIsNotNull != null">
+                AND `field_is_not_null` = #{target.fieldIsNotNull}
+            </if>
+            <if test="target.fieldIsPri != null">
+                AND `field_is_pri` = #{target.fieldIsPri}
+            </if>
+            <if test="target.fieldChinaName != null">
+                AND `field_china_name` = #{target.fieldChinaName}
+            </if>
+            <if test="target.fieldEnumValue != null">
+                AND `field_enum_value` = #{target.fieldEnumValue}
+            </if>
+            <if test="target.fieldIsBusinessUniq != null">
+                AND `field_is_business_uniq` = #{target.fieldIsBusinessUniq}
+            </if>
+            <if test="target.fieldIsQuery != null">
+                AND `field_is_query` = #{target.fieldIsQuery}
+            </if>
+            <if test="target.fieldIsReturn != null">
+                AND `field_is_return` = #{target.fieldIsReturn}
+            </if>
+            <if test="target.fieldIsInsert != null">
+                AND `field_is_insert` = #{target.fieldIsInsert}
+            </if>
+            <if test="target.fieldIsAutoIncrement != null">
+                AND `field_is_auto_increment` = #{target.fieldIsAutoIncrement}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteBase"
+            parameterType="demomaster.vo.TFieldVo">
+        DELETE FROM `t_field`
+        <where>
+            1 =1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="dbTableName != null">
+                AND `db_table_name` = #{dbTableName}
+            </if>
+            <if test="fieldName != null">
+                AND `field_name` = #{fieldName}
+            </if>
+            <if test="fieldJavaName != null">
+                AND `field_java_name` = #{fieldJavaName}
+            </if>
+            <if test="fieldType != null">
+                AND `field_type` = #{fieldType}
+            </if>
+            <if test="fieldJavaType != null">
+                AND `field_java_type` = #{fieldJavaType}
+            </if>
+            <if test="fieldComment != null">
+                AND `field_comment` = #{fieldComment}
+            </if>
+            <if test="fieldIsNotNull != null">
+                AND `field_is_not_null` = #{fieldIsNotNull}
+            </if>
+            <if test="fieldIsPri != null">
+                AND `field_is_pri` = #{fieldIsPri}
+            </if>
+            <if test="fieldChinaName != null">
+                AND `field_china_name` = #{fieldChinaName}
+            </if>
+            <if test="fieldEnumValue != null">
+                AND `field_enum_value` = #{fieldEnumValue}
+            </if>
+            <if test="fieldIsBusinessUniq != null">
+                AND `field_is_business_uniq` = #{fieldIsBusinessUniq}
+            </if>
+            <if test="fieldIsQuery != null">
+                AND `field_is_query` = #{fieldIsQuery}
+            </if>
+            <if test="fieldIsReturn != null">
+                AND `field_is_return` = #{fieldIsReturn}
+            </if>
+            <if test="fieldIsInsert != null">
+                AND `field_is_insert` = #{fieldIsInsert}
+            </if>
+            <if test="fieldIsAutoIncrement != null">
+                AND `field_is_auto_increment` = #{fieldIsAutoIncrement}
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="queryByPrimaryKey" resultMap="resultMap"
+            resultType="demomaster.vo.TFieldVo">
+        SELECT
+        `db_name`,
+        `db_table_name`,
+        `field_name`,
+        `field_java_name`,
+        `field_type`,
+        `field_java_type`,
+        `field_comment`,
+        `field_is_not_null`,
+        `field_is_pri`,
+        `field_china_name`,
+        `field_enum_value`,
+        `field_is_business_uniq`,
+        `field_is_query`,
+        `field_is_return`,
+        `field_is_insert`,
+        `field_is_auto_increment`
+        FROM `t_field`
+        <where>
+            1 =1
+            AND `db_name` = #{dbName}
+            AND `db_table_name` = #{dbTableName}
+            AND `field_name` = #{fieldName}
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM `t_field`
+        <where>
+            1 = 1
+               AND `db_name` = #{dbName}
+               AND `db_table_name` = #{dbTableName}
+               AND `field_name` = #{fieldName}
+        </where>
+    </delete>
+
+    <update id="updateByPrimaryKey"
+            parameterType="demomaster.vo.TFieldVo">
+        UPDATE `t_field`
+        <set>
+               <if test="source.fieldJavaName != null">
+                   `field_java_name` = #{source.fieldJavaName},
+               </if>
+               <if test="source.fieldType != null">
+                   `field_type` = #{source.fieldType},
+               </if>
+               <if test="source.fieldJavaType != null">
+                   `field_java_type` = #{source.fieldJavaType},
+               </if>
+               <if test="source.fieldComment != null">
+                   `field_comment` = #{source.fieldComment},
+               </if>
+               <if test="source.fieldIsNotNull != null">
+                   `field_is_not_null` = #{source.fieldIsNotNull},
+               </if>
+               <if test="source.fieldIsPri != null">
+                   `field_is_pri` = #{source.fieldIsPri},
+               </if>
+               <if test="source.fieldChinaName != null">
+                   `field_china_name` = #{source.fieldChinaName},
+               </if>
+               <if test="source.fieldEnumValue != null">
+                   `field_enum_value` = #{source.fieldEnumValue},
+               </if>
+               <if test="source.fieldIsBusinessUniq != null">
+                   `field_is_business_uniq` = #{source.fieldIsBusinessUniq},
+               </if>
+               <if test="source.fieldIsQuery != null">
+                   `field_is_query` = #{source.fieldIsQuery},
+               </if>
+               <if test="source.fieldIsReturn != null">
+                   `field_is_return` = #{source.fieldIsReturn},
+               </if>
+               <if test="source.fieldIsInsert != null">
+                   `field_is_insert` = #{source.fieldIsInsert},
+               </if>
+               <if test="source.fieldIsAutoIncrement != null">
+                   `field_is_auto_increment` = #{source.fieldIsAutoIncrement}
+               </if>
+        </set>
+        <where>
+            1 =1
+               AND `db_name` = #{target.dbName}
+               AND `db_table_name` = #{target.dbTableName}
+               AND `field_name` = #{target.fieldName}
+        </where>
+    </update>
+
+</mapper>

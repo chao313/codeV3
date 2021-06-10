@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demomaster.dao.TProjectDAO">
+
+    <resultMap id="resultMap" type="demomaster.vo.TProjectVo">
+        <result column="db_name" property="dbName"/>
+        <result column="project_name" property="projectName"/>
+        <result column="project_port" property="projectPort"/>
+        <result column="project_context_path" property="projectContextPath"/>
+        <result column="project_root_package" property="projectRootPackage"/>
+        <result column="project_mail_host" property="projectMailHost"/>
+        <result column="project_mail_user_name" property="projectMailUserName"/>
+        <result column="project_mail_password" property="projectMailPassword"/>
+        <result column="project_author_name" property="projectAuthorName"/>
+        <result column="project_author_qq" property="projectAuthorQq"/>
+        <result column="project_author_phone" property="projectAuthorPhone"/>
+        <result column="project_db_driver_class_name" property="projectDbDriverClassName"/>
+        <result column="project_db_url" property="projectDbUrl"/>
+        <result column="project_db_user_name" property="projectDbUserName"/>
+        <result column="project_db_password" property="projectDbPassword"/>
+        <result column="project_url_swagger_ui" property="projectUrlSwaggerUi"/>
+    </resultMap>
+
+    <insert id="insert"
+            parameterType="demomaster.vo.TProjectVo">
+        INSERT INTO `t_project`(
+        `db_name` ,
+        `project_name` ,
+        `project_port` ,
+        `project_context_path` ,
+        `project_root_package` ,
+        `project_mail_host` ,
+        `project_mail_user_name` ,
+        `project_mail_password` ,
+        `project_author_name` ,
+        `project_author_qq` ,
+        `project_author_phone` ,
+        `project_db_driver_class_name` ,
+        `project_db_url` ,
+        `project_db_user_name` ,
+        `project_db_password` ,
+        `project_url_swagger_ui` 
+        )VALUE(
+          #{dbName}  ,
+          #{projectName}  ,
+          #{projectPort}  ,
+          #{projectContextPath}  ,
+          #{projectRootPackage}  ,
+          #{projectMailHost}  ,
+          #{projectMailUserName}  ,
+          #{projectMailPassword}  ,
+          #{projectAuthorName}  ,
+          #{projectAuthorQq}  ,
+          #{projectAuthorPhone}  ,
+          #{projectDbDriverClassName}  ,
+          #{projectDbUrl}  ,
+          #{projectDbUserName}  ,
+          #{projectDbPassword}  ,
+          #{projectUrlSwaggerUi}  
+        )
+    </insert>
+
+    <insert id="inserts"
+            parameterType="java.util.List">
+        INSERT INTO `t_project`(
+        `db_name`,
+        `project_name`,
+        `project_port`,
+        `project_context_path`,
+        `project_root_package`,
+        `project_mail_host`,
+        `project_mail_user_name`,
+        `project_mail_password`,
+        `project_author_name`,
+        `project_author_qq`,
+        `project_author_phone`,
+        `project_db_driver_class_name`,
+        `project_db_url`,
+        `project_db_user_name`,
+        `project_db_password`,
+        `project_url_swagger_ui`
+        )VALUES
+        <foreach collection="vos" item="item" separator=",">
+            (
+            #{item.dbName},
+            #{item.projectName},
+            #{item.projectPort},
+            #{item.projectContextPath},
+            #{item.projectRootPackage},
+            #{item.projectMailHost},
+            #{item.projectMailUserName},
+            #{item.projectMailPassword},
+            #{item.projectAuthorName},
+            #{item.projectAuthorQq},
+            #{item.projectAuthorPhone},
+            #{item.projectDbDriverClassName},
+            #{item.projectDbUrl},
+            #{item.projectDbUserName},
+            #{item.projectDbPassword},
+            #{item.projectUrlSwaggerUi}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryBase" resultMap="resultMap"
+            resultType="demomaster.vo.TProjectVo"
+            parameterType="demomaster.vo.TProjectVo">
+        SELECT
+        `db_name`,
+        `project_name`,
+        `project_port`,
+        `project_context_path`,
+        `project_root_package`,
+        `project_mail_host`,
+        `project_mail_user_name`,
+        `project_mail_password`,
+        `project_author_name`,
+        `project_author_qq`,
+        `project_author_phone`,
+        `project_db_driver_class_name`,
+        `project_db_url`,
+        `project_db_user_name`,
+        `project_db_password`,
+        `project_url_swagger_ui`
+        FROM `t_project`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="projectName != null">
+                AND `project_name` = #{projectName}
+            </if>
+            <if test="projectPort != null">
+                AND `project_port` = #{projectPort}
+            </if>
+            <if test="projectContextPath != null">
+                AND `project_context_path` = #{projectContextPath}
+            </if>
+            <if test="projectRootPackage != null">
+                AND `project_root_package` = #{projectRootPackage}
+            </if>
+            <if test="projectMailHost != null">
+                AND `project_mail_host` = #{projectMailHost}
+            </if>
+            <if test="projectMailUserName != null">
+                AND `project_mail_user_name` = #{projectMailUserName}
+            </if>
+            <if test="projectMailPassword != null">
+                AND `project_mail_password` = #{projectMailPassword}
+            </if>
+            <if test="projectAuthorName != null">
+                AND `project_author_name` = #{projectAuthorName}
+            </if>
+            <if test="projectAuthorQq != null">
+                AND `project_author_qq` = #{projectAuthorQq}
+            </if>
+            <if test="projectAuthorPhone != null">
+                AND `project_author_phone` = #{projectAuthorPhone}
+            </if>
+            <if test="projectDbDriverClassName != null">
+                AND `project_db_driver_class_name` = #{projectDbDriverClassName}
+            </if>
+            <if test="projectDbUrl != null">
+                AND `project_db_url` = #{projectDbUrl}
+            </if>
+            <if test="projectDbUserName != null">
+                AND `project_db_user_name` = #{projectDbUserName}
+            </if>
+            <if test="projectDbPassword != null">
+                AND `project_db_password` = #{projectDbPassword}
+            </if>
+            <if test="projectUrlSwaggerUi != null">
+                AND `project_url_swagger_ui` = #{projectUrlSwaggerUi}
+            </if>
+        </where>
+    </select>
+
+     <select id="queryMultiTerm" resultMap="resultMap"
+             resultType="demomaster.vo.TProjectVo"
+             parameterType="demomaster.vo.TProjectMultiTermVo">
+        SELECT
+        `db_name`,
+        `project_name`,
+        `project_port`,
+        `project_context_path`,
+        `project_root_package`,
+        `project_mail_host`,
+        `project_mail_user_name`,
+        `project_mail_password`,
+        `project_author_name`,
+        `project_author_qq`,
+        `project_author_phone`,
+        `project_db_driver_class_name`,
+        `project_db_url`,
+        `project_db_user_name`,
+        `project_db_password`,
+        `project_url_swagger_ui`
+        FROM `t_project`
+        <where>
+            1 = 1
+            <if test="dbName != null">
+                 <if test="dbName._in != null">
+                     AND `db_name` in
+                     <foreach collection="db_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notIn != null">
+                     AND `db_name`  not in
+                     <foreach collection="db_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._like != null">
+                     <foreach collection="db_name._like" item="item">
+                       AND `db_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._notLike != null">
+                     <foreach collection="db_name._notLike" item="item">
+                       AND `db_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._regex != null">
+                     <foreach collection="db_name._regex" item="item">
+                       AND `db_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="dbName._lt != null">
+                      AND `db_name` <![CDATA[ < ]]>  #{db_name._lt}
+                 </if>
+                  <if test="dbName._le != null">
+                      AND `db_name` <![CDATA[ <= ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._gt != null">
+                      AND `db_name` <![CDATA[ > ]]>  #{{db_name._lt}
+                 </if>
+                  <if test="dbName._ge != null">
+                      AND `db_name` <![CDATA[ >= ]]>  #{{db_name._lt}
+                 </if>
+            </if>
+            <if test="projectName != null">
+                 <if test="projectName._in != null">
+                     AND `project_name` in
+                     <foreach collection="project_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._notIn != null">
+                     AND `project_name`  not in
+                     <foreach collection="project_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._like != null">
+                     <foreach collection="project_name._like" item="item">
+                       AND `project_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._notLike != null">
+                     <foreach collection="project_name._notLike" item="item">
+                       AND `project_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._regex != null">
+                     <foreach collection="project_name._regex" item="item">
+                       AND `project_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._regex != null">
+                     <foreach collection="project_name._regex" item="item">
+                       AND `project_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectName._lt != null">
+                      AND `project_name` <![CDATA[ < ]]>  #{project_name._lt}
+                 </if>
+                  <if test="projectName._le != null">
+                      AND `project_name` <![CDATA[ <= ]]>  #{{project_name._lt}
+                 </if>
+                  <if test="projectName._gt != null">
+                      AND `project_name` <![CDATA[ > ]]>  #{{project_name._lt}
+                 </if>
+                  <if test="projectName._ge != null">
+                      AND `project_name` <![CDATA[ >= ]]>  #{{project_name._lt}
+                 </if>
+            </if>
+            <if test="projectPort != null">
+                 <if test="projectPort._in != null">
+                     AND `project_port` in
+                     <foreach collection="project_port._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._notIn != null">
+                     AND `project_port`  not in
+                     <foreach collection="project_port._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._like != null">
+                     <foreach collection="project_port._like" item="item">
+                       AND `project_port` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._notLike != null">
+                     <foreach collection="project_port._notLike" item="item">
+                       AND `project_port` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._regex != null">
+                     <foreach collection="project_port._regex" item="item">
+                       AND `project_port` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._regex != null">
+                     <foreach collection="project_port._regex" item="item">
+                       AND `project_port` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectPort._lt != null">
+                      AND `project_port` <![CDATA[ < ]]>  #{project_port._lt}
+                 </if>
+                  <if test="projectPort._le != null">
+                      AND `project_port` <![CDATA[ <= ]]>  #{{project_port._lt}
+                 </if>
+                  <if test="projectPort._gt != null">
+                      AND `project_port` <![CDATA[ > ]]>  #{{project_port._lt}
+                 </if>
+                  <if test="projectPort._ge != null">
+                      AND `project_port` <![CDATA[ >= ]]>  #{{project_port._lt}
+                 </if>
+            </if>
+            <if test="projectContextPath != null">
+                 <if test="projectContextPath._in != null">
+                     AND `project_context_path` in
+                     <foreach collection="project_context_path._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._notIn != null">
+                     AND `project_context_path`  not in
+                     <foreach collection="project_context_path._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._like != null">
+                     <foreach collection="project_context_path._like" item="item">
+                       AND `project_context_path` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._notLike != null">
+                     <foreach collection="project_context_path._notLike" item="item">
+                       AND `project_context_path` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._regex != null">
+                     <foreach collection="project_context_path._regex" item="item">
+                       AND `project_context_path` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._regex != null">
+                     <foreach collection="project_context_path._regex" item="item">
+                       AND `project_context_path` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectContextPath._lt != null">
+                      AND `project_context_path` <![CDATA[ < ]]>  #{project_context_path._lt}
+                 </if>
+                  <if test="projectContextPath._le != null">
+                      AND `project_context_path` <![CDATA[ <= ]]>  #{{project_context_path._lt}
+                 </if>
+                  <if test="projectContextPath._gt != null">
+                      AND `project_context_path` <![CDATA[ > ]]>  #{{project_context_path._lt}
+                 </if>
+                  <if test="projectContextPath._ge != null">
+                      AND `project_context_path` <![CDATA[ >= ]]>  #{{project_context_path._lt}
+                 </if>
+            </if>
+            <if test="projectRootPackage != null">
+                 <if test="projectRootPackage._in != null">
+                     AND `project_root_package` in
+                     <foreach collection="project_root_package._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._notIn != null">
+                     AND `project_root_package`  not in
+                     <foreach collection="project_root_package._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._like != null">
+                     <foreach collection="project_root_package._like" item="item">
+                       AND `project_root_package` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._notLike != null">
+                     <foreach collection="project_root_package._notLike" item="item">
+                       AND `project_root_package` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._regex != null">
+                     <foreach collection="project_root_package._regex" item="item">
+                       AND `project_root_package` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._regex != null">
+                     <foreach collection="project_root_package._regex" item="item">
+                       AND `project_root_package` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectRootPackage._lt != null">
+                      AND `project_root_package` <![CDATA[ < ]]>  #{project_root_package._lt}
+                 </if>
+                  <if test="projectRootPackage._le != null">
+                      AND `project_root_package` <![CDATA[ <= ]]>  #{{project_root_package._lt}
+                 </if>
+                  <if test="projectRootPackage._gt != null">
+                      AND `project_root_package` <![CDATA[ > ]]>  #{{project_root_package._lt}
+                 </if>
+                  <if test="projectRootPackage._ge != null">
+                      AND `project_root_package` <![CDATA[ >= ]]>  #{{project_root_package._lt}
+                 </if>
+            </if>
+            <if test="projectMailHost != null">
+                 <if test="projectMailHost._in != null">
+                     AND `project_mail_host` in
+                     <foreach collection="project_mail_host._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._notIn != null">
+                     AND `project_mail_host`  not in
+                     <foreach collection="project_mail_host._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._like != null">
+                     <foreach collection="project_mail_host._like" item="item">
+                       AND `project_mail_host` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._notLike != null">
+                     <foreach collection="project_mail_host._notLike" item="item">
+                       AND `project_mail_host` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._regex != null">
+                     <foreach collection="project_mail_host._regex" item="item">
+                       AND `project_mail_host` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._regex != null">
+                     <foreach collection="project_mail_host._regex" item="item">
+                       AND `project_mail_host` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailHost._lt != null">
+                      AND `project_mail_host` <![CDATA[ < ]]>  #{project_mail_host._lt}
+                 </if>
+                  <if test="projectMailHost._le != null">
+                      AND `project_mail_host` <![CDATA[ <= ]]>  #{{project_mail_host._lt}
+                 </if>
+                  <if test="projectMailHost._gt != null">
+                      AND `project_mail_host` <![CDATA[ > ]]>  #{{project_mail_host._lt}
+                 </if>
+                  <if test="projectMailHost._ge != null">
+                      AND `project_mail_host` <![CDATA[ >= ]]>  #{{project_mail_host._lt}
+                 </if>
+            </if>
+            <if test="projectMailUserName != null">
+                 <if test="projectMailUserName._in != null">
+                     AND `project_mail_user_name` in
+                     <foreach collection="project_mail_user_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._notIn != null">
+                     AND `project_mail_user_name`  not in
+                     <foreach collection="project_mail_user_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._like != null">
+                     <foreach collection="project_mail_user_name._like" item="item">
+                       AND `project_mail_user_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._notLike != null">
+                     <foreach collection="project_mail_user_name._notLike" item="item">
+                       AND `project_mail_user_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._regex != null">
+                     <foreach collection="project_mail_user_name._regex" item="item">
+                       AND `project_mail_user_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._regex != null">
+                     <foreach collection="project_mail_user_name._regex" item="item">
+                       AND `project_mail_user_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailUserName._lt != null">
+                      AND `project_mail_user_name` <![CDATA[ < ]]>  #{project_mail_user_name._lt}
+                 </if>
+                  <if test="projectMailUserName._le != null">
+                      AND `project_mail_user_name` <![CDATA[ <= ]]>  #{{project_mail_user_name._lt}
+                 </if>
+                  <if test="projectMailUserName._gt != null">
+                      AND `project_mail_user_name` <![CDATA[ > ]]>  #{{project_mail_user_name._lt}
+                 </if>
+                  <if test="projectMailUserName._ge != null">
+                      AND `project_mail_user_name` <![CDATA[ >= ]]>  #{{project_mail_user_name._lt}
+                 </if>
+            </if>
+            <if test="projectMailPassword != null">
+                 <if test="projectMailPassword._in != null">
+                     AND `project_mail_password` in
+                     <foreach collection="project_mail_password._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._notIn != null">
+                     AND `project_mail_password`  not in
+                     <foreach collection="project_mail_password._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._like != null">
+                     <foreach collection="project_mail_password._like" item="item">
+                       AND `project_mail_password` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._notLike != null">
+                     <foreach collection="project_mail_password._notLike" item="item">
+                       AND `project_mail_password` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._regex != null">
+                     <foreach collection="project_mail_password._regex" item="item">
+                       AND `project_mail_password` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._regex != null">
+                     <foreach collection="project_mail_password._regex" item="item">
+                       AND `project_mail_password` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectMailPassword._lt != null">
+                      AND `project_mail_password` <![CDATA[ < ]]>  #{project_mail_password._lt}
+                 </if>
+                  <if test="projectMailPassword._le != null">
+                      AND `project_mail_password` <![CDATA[ <= ]]>  #{{project_mail_password._lt}
+                 </if>
+                  <if test="projectMailPassword._gt != null">
+                      AND `project_mail_password` <![CDATA[ > ]]>  #{{project_mail_password._lt}
+                 </if>
+                  <if test="projectMailPassword._ge != null">
+                      AND `project_mail_password` <![CDATA[ >= ]]>  #{{project_mail_password._lt}
+                 </if>
+            </if>
+            <if test="projectAuthorName != null">
+                 <if test="projectAuthorName._in != null">
+                     AND `project_author_name` in
+                     <foreach collection="project_author_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._notIn != null">
+                     AND `project_author_name`  not in
+                     <foreach collection="project_author_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._like != null">
+                     <foreach collection="project_author_name._like" item="item">
+                       AND `project_author_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._notLike != null">
+                     <foreach collection="project_author_name._notLike" item="item">
+                       AND `project_author_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._regex != null">
+                     <foreach collection="project_author_name._regex" item="item">
+                       AND `project_author_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._regex != null">
+                     <foreach collection="project_author_name._regex" item="item">
+                       AND `project_author_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorName._lt != null">
+                      AND `project_author_name` <![CDATA[ < ]]>  #{project_author_name._lt}
+                 </if>
+                  <if test="projectAuthorName._le != null">
+                      AND `project_author_name` <![CDATA[ <= ]]>  #{{project_author_name._lt}
+                 </if>
+                  <if test="projectAuthorName._gt != null">
+                      AND `project_author_name` <![CDATA[ > ]]>  #{{project_author_name._lt}
+                 </if>
+                  <if test="projectAuthorName._ge != null">
+                      AND `project_author_name` <![CDATA[ >= ]]>  #{{project_author_name._lt}
+                 </if>
+            </if>
+            <if test="projectAuthorQq != null">
+                 <if test="projectAuthorQq._in != null">
+                     AND `project_author_qq` in
+                     <foreach collection="project_author_qq._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._notIn != null">
+                     AND `project_author_qq`  not in
+                     <foreach collection="project_author_qq._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._like != null">
+                     <foreach collection="project_author_qq._like" item="item">
+                       AND `project_author_qq` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._notLike != null">
+                     <foreach collection="project_author_qq._notLike" item="item">
+                       AND `project_author_qq` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._regex != null">
+                     <foreach collection="project_author_qq._regex" item="item">
+                       AND `project_author_qq` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._regex != null">
+                     <foreach collection="project_author_qq._regex" item="item">
+                       AND `project_author_qq` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorQq._lt != null">
+                      AND `project_author_qq` <![CDATA[ < ]]>  #{project_author_qq._lt}
+                 </if>
+                  <if test="projectAuthorQq._le != null">
+                      AND `project_author_qq` <![CDATA[ <= ]]>  #{{project_author_qq._lt}
+                 </if>
+                  <if test="projectAuthorQq._gt != null">
+                      AND `project_author_qq` <![CDATA[ > ]]>  #{{project_author_qq._lt}
+                 </if>
+                  <if test="projectAuthorQq._ge != null">
+                      AND `project_author_qq` <![CDATA[ >= ]]>  #{{project_author_qq._lt}
+                 </if>
+            </if>
+            <if test="projectAuthorPhone != null">
+                 <if test="projectAuthorPhone._in != null">
+                     AND `project_author_phone` in
+                     <foreach collection="project_author_phone._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._notIn != null">
+                     AND `project_author_phone`  not in
+                     <foreach collection="project_author_phone._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._like != null">
+                     <foreach collection="project_author_phone._like" item="item">
+                       AND `project_author_phone` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._notLike != null">
+                     <foreach collection="project_author_phone._notLike" item="item">
+                       AND `project_author_phone` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._regex != null">
+                     <foreach collection="project_author_phone._regex" item="item">
+                       AND `project_author_phone` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._regex != null">
+                     <foreach collection="project_author_phone._regex" item="item">
+                       AND `project_author_phone` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectAuthorPhone._lt != null">
+                      AND `project_author_phone` <![CDATA[ < ]]>  #{project_author_phone._lt}
+                 </if>
+                  <if test="projectAuthorPhone._le != null">
+                      AND `project_author_phone` <![CDATA[ <= ]]>  #{{project_author_phone._lt}
+                 </if>
+                  <if test="projectAuthorPhone._gt != null">
+                      AND `project_author_phone` <![CDATA[ > ]]>  #{{project_author_phone._lt}
+                 </if>
+                  <if test="projectAuthorPhone._ge != null">
+                      AND `project_author_phone` <![CDATA[ >= ]]>  #{{project_author_phone._lt}
+                 </if>
+            </if>
+            <if test="projectDbDriverClassName != null">
+                 <if test="projectDbDriverClassName._in != null">
+                     AND `project_db_driver_class_name` in
+                     <foreach collection="project_db_driver_class_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._notIn != null">
+                     AND `project_db_driver_class_name`  not in
+                     <foreach collection="project_db_driver_class_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._like != null">
+                     <foreach collection="project_db_driver_class_name._like" item="item">
+                       AND `project_db_driver_class_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._notLike != null">
+                     <foreach collection="project_db_driver_class_name._notLike" item="item">
+                       AND `project_db_driver_class_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._regex != null">
+                     <foreach collection="project_db_driver_class_name._regex" item="item">
+                       AND `project_db_driver_class_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._regex != null">
+                     <foreach collection="project_db_driver_class_name._regex" item="item">
+                       AND `project_db_driver_class_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbDriverClassName._lt != null">
+                      AND `project_db_driver_class_name` <![CDATA[ < ]]>  #{project_db_driver_class_name._lt}
+                 </if>
+                  <if test="projectDbDriverClassName._le != null">
+                      AND `project_db_driver_class_name` <![CDATA[ <= ]]>  #{{project_db_driver_class_name._lt}
+                 </if>
+                  <if test="projectDbDriverClassName._gt != null">
+                      AND `project_db_driver_class_name` <![CDATA[ > ]]>  #{{project_db_driver_class_name._lt}
+                 </if>
+                  <if test="projectDbDriverClassName._ge != null">
+                      AND `project_db_driver_class_name` <![CDATA[ >= ]]>  #{{project_db_driver_class_name._lt}
+                 </if>
+            </if>
+            <if test="projectDbUrl != null">
+                 <if test="projectDbUrl._in != null">
+                     AND `project_db_url` in
+                     <foreach collection="project_db_url._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._notIn != null">
+                     AND `project_db_url`  not in
+                     <foreach collection="project_db_url._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._like != null">
+                     <foreach collection="project_db_url._like" item="item">
+                       AND `project_db_url` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._notLike != null">
+                     <foreach collection="project_db_url._notLike" item="item">
+                       AND `project_db_url` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._regex != null">
+                     <foreach collection="project_db_url._regex" item="item">
+                       AND `project_db_url` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._regex != null">
+                     <foreach collection="project_db_url._regex" item="item">
+                       AND `project_db_url` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUrl._lt != null">
+                      AND `project_db_url` <![CDATA[ < ]]>  #{project_db_url._lt}
+                 </if>
+                  <if test="projectDbUrl._le != null">
+                      AND `project_db_url` <![CDATA[ <= ]]>  #{{project_db_url._lt}
+                 </if>
+                  <if test="projectDbUrl._gt != null">
+                      AND `project_db_url` <![CDATA[ > ]]>  #{{project_db_url._lt}
+                 </if>
+                  <if test="projectDbUrl._ge != null">
+                      AND `project_db_url` <![CDATA[ >= ]]>  #{{project_db_url._lt}
+                 </if>
+            </if>
+            <if test="projectDbUserName != null">
+                 <if test="projectDbUserName._in != null">
+                     AND `project_db_user_name` in
+                     <foreach collection="project_db_user_name._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._notIn != null">
+                     AND `project_db_user_name`  not in
+                     <foreach collection="project_db_user_name._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._like != null">
+                     <foreach collection="project_db_user_name._like" item="item">
+                       AND `project_db_user_name` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._notLike != null">
+                     <foreach collection="project_db_user_name._notLike" item="item">
+                       AND `project_db_user_name` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._regex != null">
+                     <foreach collection="project_db_user_name._regex" item="item">
+                       AND `project_db_user_name` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._regex != null">
+                     <foreach collection="project_db_user_name._regex" item="item">
+                       AND `project_db_user_name` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbUserName._lt != null">
+                      AND `project_db_user_name` <![CDATA[ < ]]>  #{project_db_user_name._lt}
+                 </if>
+                  <if test="projectDbUserName._le != null">
+                      AND `project_db_user_name` <![CDATA[ <= ]]>  #{{project_db_user_name._lt}
+                 </if>
+                  <if test="projectDbUserName._gt != null">
+                      AND `project_db_user_name` <![CDATA[ > ]]>  #{{project_db_user_name._lt}
+                 </if>
+                  <if test="projectDbUserName._ge != null">
+                      AND `project_db_user_name` <![CDATA[ >= ]]>  #{{project_db_user_name._lt}
+                 </if>
+            </if>
+            <if test="projectDbPassword != null">
+                 <if test="projectDbPassword._in != null">
+                     AND `project_db_password` in
+                     <foreach collection="project_db_password._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._notIn != null">
+                     AND `project_db_password`  not in
+                     <foreach collection="project_db_password._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._like != null">
+                     <foreach collection="project_db_password._like" item="item">
+                       AND `project_db_password` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._notLike != null">
+                     <foreach collection="project_db_password._notLike" item="item">
+                       AND `project_db_password` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._regex != null">
+                     <foreach collection="project_db_password._regex" item="item">
+                       AND `project_db_password` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._regex != null">
+                     <foreach collection="project_db_password._regex" item="item">
+                       AND `project_db_password` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectDbPassword._lt != null">
+                      AND `project_db_password` <![CDATA[ < ]]>  #{project_db_password._lt}
+                 </if>
+                  <if test="projectDbPassword._le != null">
+                      AND `project_db_password` <![CDATA[ <= ]]>  #{{project_db_password._lt}
+                 </if>
+                  <if test="projectDbPassword._gt != null">
+                      AND `project_db_password` <![CDATA[ > ]]>  #{{project_db_password._lt}
+                 </if>
+                  <if test="projectDbPassword._ge != null">
+                      AND `project_db_password` <![CDATA[ >= ]]>  #{{project_db_password._lt}
+                 </if>
+            </if>
+            <if test="projectUrlSwaggerUi != null">
+                 <if test="projectUrlSwaggerUi._in != null">
+                     AND `project_url_swagger_ui` in
+                     <foreach collection="project_url_swagger_ui._in" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._notIn != null">
+                     AND `project_url_swagger_ui`  not in
+                     <foreach collection="project_url_swagger_ui._notIn" item="item" separator="," open="(" close=")">
+                         #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._like != null">
+                     <foreach collection="project_url_swagger_ui._like" item="item">
+                       AND `project_url_swagger_ui` like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._notLike != null">
+                     <foreach collection="project_url_swagger_ui._notLike" item="item">
+                       AND `project_url_swagger_ui` not like #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._regex != null">
+                     <foreach collection="project_url_swagger_ui._regex" item="item">
+                       AND `project_url_swagger_ui` REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._regex != null">
+                     <foreach collection="project_url_swagger_ui._regex" item="item">
+                       AND `project_url_swagger_ui` not REGEXP #{item}
+                     </foreach>
+                 </if>
+                 <if test="projectUrlSwaggerUi._lt != null">
+                      AND `project_url_swagger_ui` <![CDATA[ < ]]>  #{project_url_swagger_ui._lt}
+                 </if>
+                  <if test="projectUrlSwaggerUi._le != null">
+                      AND `project_url_swagger_ui` <![CDATA[ <= ]]>  #{{project_url_swagger_ui._lt}
+                 </if>
+                  <if test="projectUrlSwaggerUi._gt != null">
+                      AND `project_url_swagger_ui` <![CDATA[ > ]]>  #{{project_url_swagger_ui._lt}
+                 </if>
+                  <if test="projectUrlSwaggerUi._ge != null">
+                      AND `project_url_swagger_ui` <![CDATA[ >= ]]>  #{{project_url_swagger_ui._lt}
+                 </if>
+            </if>
+        </where>
+        </select>
+
+    <update id="updateBase"
+            parameterType="demomaster.vo.TProjectVo">
+        UPDATE `t_project`
+        <set>
+            <if test="source.dbName != null">
+                `db_name` = #{source.dbName},
+            </if>
+            <if test="source.projectName != null">
+                `project_name` = #{source.projectName},
+            </if>
+            <if test="source.projectPort != null">
+                `project_port` = #{source.projectPort},
+            </if>
+            <if test="source.projectContextPath != null">
+                `project_context_path` = #{source.projectContextPath},
+            </if>
+            <if test="source.projectRootPackage != null">
+                `project_root_package` = #{source.projectRootPackage},
+            </if>
+            <if test="source.projectMailHost != null">
+                `project_mail_host` = #{source.projectMailHost},
+            </if>
+            <if test="source.projectMailUserName != null">
+                `project_mail_user_name` = #{source.projectMailUserName},
+            </if>
+            <if test="source.projectMailPassword != null">
+                `project_mail_password` = #{source.projectMailPassword},
+            </if>
+            <if test="source.projectAuthorName != null">
+                `project_author_name` = #{source.projectAuthorName},
+            </if>
+            <if test="source.projectAuthorQq != null">
+                `project_author_qq` = #{source.projectAuthorQq},
+            </if>
+            <if test="source.projectAuthorPhone != null">
+                `project_author_phone` = #{source.projectAuthorPhone},
+            </if>
+            <if test="source.projectDbDriverClassName != null">
+                `project_db_driver_class_name` = #{source.projectDbDriverClassName},
+            </if>
+            <if test="source.projectDbUrl != null">
+                `project_db_url` = #{source.projectDbUrl},
+            </if>
+            <if test="source.projectDbUserName != null">
+                `project_db_user_name` = #{source.projectDbUserName},
+            </if>
+            <if test="source.projectDbPassword != null">
+                `project_db_password` = #{source.projectDbPassword},
+            </if>
+            <if test="source.projectUrlSwaggerUi != null">
+                `project_url_swagger_ui` = #{source.projectUrlSwaggerUi}
+            </if>
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.projectName != null">
+                AND `project_name` = #{target.projectName}
+            </if>
+            <if test="target.projectPort != null">
+                AND `project_port` = #{target.projectPort}
+            </if>
+            <if test="target.projectContextPath != null">
+                AND `project_context_path` = #{target.projectContextPath}
+            </if>
+            <if test="target.projectRootPackage != null">
+                AND `project_root_package` = #{target.projectRootPackage}
+            </if>
+            <if test="target.projectMailHost != null">
+                AND `project_mail_host` = #{target.projectMailHost}
+            </if>
+            <if test="target.projectMailUserName != null">
+                AND `project_mail_user_name` = #{target.projectMailUserName}
+            </if>
+            <if test="target.projectMailPassword != null">
+                AND `project_mail_password` = #{target.projectMailPassword}
+            </if>
+            <if test="target.projectAuthorName != null">
+                AND `project_author_name` = #{target.projectAuthorName}
+            </if>
+            <if test="target.projectAuthorQq != null">
+                AND `project_author_qq` = #{target.projectAuthorQq}
+            </if>
+            <if test="target.projectAuthorPhone != null">
+                AND `project_author_phone` = #{target.projectAuthorPhone}
+            </if>
+            <if test="target.projectDbDriverClassName != null">
+                AND `project_db_driver_class_name` = #{target.projectDbDriverClassName}
+            </if>
+            <if test="target.projectDbUrl != null">
+                AND `project_db_url` = #{target.projectDbUrl}
+            </if>
+            <if test="target.projectDbUserName != null">
+                AND `project_db_user_name` = #{target.projectDbUserName}
+            </if>
+            <if test="target.projectDbPassword != null">
+                AND `project_db_password` = #{target.projectDbPassword}
+            </if>
+            <if test="target.projectUrlSwaggerUi != null">
+                AND `project_url_swagger_ui` = #{target.projectUrlSwaggerUi}
+            </if>
+        </where>
+    </update>
+
+    <update id="updateBaseIncludeNull"
+            parameterType="demomaster.vo.TProjectVo">
+        UPDATE `t_project`
+        <set>
+            `db_name` = #{source.dbName},
+            `project_name` = #{source.projectName},
+            `project_port` = #{source.projectPort},
+            `project_context_path` = #{source.projectContextPath},
+            `project_root_package` = #{source.projectRootPackage},
+            `project_mail_host` = #{source.projectMailHost},
+            `project_mail_user_name` = #{source.projectMailUserName},
+            `project_mail_password` = #{source.projectMailPassword},
+            `project_author_name` = #{source.projectAuthorName},
+            `project_author_qq` = #{source.projectAuthorQq},
+            `project_author_phone` = #{source.projectAuthorPhone},
+            `project_db_driver_class_name` = #{source.projectDbDriverClassName},
+            `project_db_url` = #{source.projectDbUrl},
+            `project_db_user_name` = #{source.projectDbUserName},
+            `project_db_password` = #{source.projectDbPassword},
+            `project_url_swagger_ui` = #{source.projectUrlSwaggerUi}
+        </set>
+        <where>
+            1 =1
+            <if test="target.dbName != null">
+                AND `db_name` = #{target.dbName}
+            </if>
+            <if test="target.projectName != null">
+                AND `project_name` = #{target.projectName}
+            </if>
+            <if test="target.projectPort != null">
+                AND `project_port` = #{target.projectPort}
+            </if>
+            <if test="target.projectContextPath != null">
+                AND `project_context_path` = #{target.projectContextPath}
+            </if>
+            <if test="target.projectRootPackage != null">
+                AND `project_root_package` = #{target.projectRootPackage}
+            </if>
+            <if test="target.projectMailHost != null">
+                AND `project_mail_host` = #{target.projectMailHost}
+            </if>
+            <if test="target.projectMailUserName != null">
+                AND `project_mail_user_name` = #{target.projectMailUserName}
+            </if>
+            <if test="target.projectMailPassword != null">
+                AND `project_mail_password` = #{target.projectMailPassword}
+            </if>
+            <if test="target.projectAuthorName != null">
+                AND `project_author_name` = #{target.projectAuthorName}
+            </if>
+            <if test="target.projectAuthorQq != null">
+                AND `project_author_qq` = #{target.projectAuthorQq}
+            </if>
+            <if test="target.projectAuthorPhone != null">
+                AND `project_author_phone` = #{target.projectAuthorPhone}
+            </if>
+            <if test="target.projectDbDriverClassName != null">
+                AND `project_db_driver_class_name` = #{target.projectDbDriverClassName}
+            </if>
+            <if test="target.projectDbUrl != null">
+                AND `project_db_url` = #{target.projectDbUrl}
+            </if>
+            <if test="target.projectDbUserName != null">
+                AND `project_db_user_name` = #{target.projectDbUserName}
+            </if>
+            <if test="target.projectDbPassword != null">
+                AND `project_db_password` = #{target.projectDbPassword}
+            </if>
+            <if test="target.projectUrlSwaggerUi != null">
+                AND `project_url_swagger_ui` = #{target.projectUrlSwaggerUi}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteBase"
+            parameterType="demomaster.vo.TProjectVo">
+        DELETE FROM `t_project`
+        <where>
+            1 =1
+            <if test="dbName != null">
+                AND `db_name` = #{dbName}
+            </if>
+            <if test="projectName != null">
+                AND `project_name` = #{projectName}
+            </if>
+            <if test="projectPort != null">
+                AND `project_port` = #{projectPort}
+            </if>
+            <if test="projectContextPath != null">
+                AND `project_context_path` = #{projectContextPath}
+            </if>
+            <if test="projectRootPackage != null">
+                AND `project_root_package` = #{projectRootPackage}
+            </if>
+            <if test="projectMailHost != null">
+                AND `project_mail_host` = #{projectMailHost}
+            </if>
+            <if test="projectMailUserName != null">
+                AND `project_mail_user_name` = #{projectMailUserName}
+            </if>
+            <if test="projectMailPassword != null">
+                AND `project_mail_password` = #{projectMailPassword}
+            </if>
+            <if test="projectAuthorName != null">
+                AND `project_author_name` = #{projectAuthorName}
+            </if>
+            <if test="projectAuthorQq != null">
+                AND `project_author_qq` = #{projectAuthorQq}
+            </if>
+            <if test="projectAuthorPhone != null">
+                AND `project_author_phone` = #{projectAuthorPhone}
+            </if>
+            <if test="projectDbDriverClassName != null">
+                AND `project_db_driver_class_name` = #{projectDbDriverClassName}
+            </if>
+            <if test="projectDbUrl != null">
+                AND `project_db_url` = #{projectDbUrl}
+            </if>
+            <if test="projectDbUserName != null">
+                AND `project_db_user_name` = #{projectDbUserName}
+            </if>
+            <if test="projectDbPassword != null">
+                AND `project_db_password` = #{projectDbPassword}
+            </if>
+            <if test="projectUrlSwaggerUi != null">
+                AND `project_url_swagger_ui` = #{projectUrlSwaggerUi}
+            </if>
+        </where>
+    </delete>
+
+
+    <select id="queryByPrimaryKey" resultMap="resultMap"
+            resultType="demomaster.vo.TProjectVo">
+        SELECT
+        `db_name`,
+        `project_name`,
+        `project_port`,
+        `project_context_path`,
+        `project_root_package`,
+        `project_mail_host`,
+        `project_mail_user_name`,
+        `project_mail_password`,
+        `project_author_name`,
+        `project_author_qq`,
+        `project_author_phone`,
+        `project_db_driver_class_name`,
+        `project_db_url`,
+        `project_db_user_name`,
+        `project_db_password`,
+        `project_url_swagger_ui`
+        FROM `t_project`
+        <where>
+            1 =1
+            AND `db_name` = #{dbName}
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        DELETE FROM `t_project`
+        <where>
+            1 = 1
+               AND `db_name` = #{dbName}
+        </where>
+    </delete>
+
+    <update id="updateByPrimaryKey"
+            parameterType="demomaster.vo.TProjectVo">
+        UPDATE `t_project`
+        <set>
+               <if test="source.projectName != null">
+                   `project_name` = #{source.projectName},
+               </if>
+               <if test="source.projectPort != null">
+                   `project_port` = #{source.projectPort},
+               </if>
+               <if test="source.projectContextPath != null">
+                   `project_context_path` = #{source.projectContextPath},
+               </if>
+               <if test="source.projectRootPackage != null">
+                   `project_root_package` = #{source.projectRootPackage},
+               </if>
+               <if test="source.projectMailHost != null">
+                   `project_mail_host` = #{source.projectMailHost},
+               </if>
+               <if test="source.projectMailUserName != null">
+                   `project_mail_user_name` = #{source.projectMailUserName},
+               </if>
+               <if test="source.projectMailPassword != null">
+                   `project_mail_password` = #{source.projectMailPassword},
+               </if>
+               <if test="source.projectAuthorName != null">
+                   `project_author_name` = #{source.projectAuthorName},
+               </if>
+               <if test="source.projectAuthorQq != null">
+                   `project_author_qq` = #{source.projectAuthorQq},
+               </if>
+               <if test="source.projectAuthorPhone != null">
+                   `project_author_phone` = #{source.projectAuthorPhone},
+               </if>
+               <if test="source.projectDbDriverClassName != null">
+                   `project_db_driver_class_name` = #{source.projectDbDriverClassName},
+               </if>
+               <if test="source.projectDbUrl != null">
+                   `project_db_url` = #{source.projectDbUrl},
+               </if>
+               <if test="source.projectDbUserName != null">
+                   `project_db_user_name` = #{source.projectDbUserName},
+               </if>
+               <if test="source.projectDbPassword != null">
+                   `project_db_password` = #{source.projectDbPassword},
+               </if>
+               <if test="source.projectUrlSwaggerUi != null">
+                   `project_url_swagger_ui` = #{source.projectUrlSwaggerUi}
+               </if>
+        </set>
+        <where>
+            1 =1
+               AND `db_name` = #{target.dbName}
+        </where>
+    </update>
+
+</mapper>
