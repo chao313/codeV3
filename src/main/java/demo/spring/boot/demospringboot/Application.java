@@ -15,8 +15,8 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import java.nio.charset.Charset;
 
 @SpringBootApplication
-@ComponentScan(value = {"demo.spring.boot", "demomaster"})
-@MapperScan(value = {"demo.spring.boot.demospringboot.mybatis.dao", "demomaster.dao"})//mybatis
+//@ComponentScan(value = {"demo.spring.boot", "demomaster"})
+//@MapperScan(value = {"demo.spring.boot.demospringboot.mybatis.dao", "demomaster.dao"})//mybatis
 @Slf4j
 public class Application implements ApplicationRunner {
 
