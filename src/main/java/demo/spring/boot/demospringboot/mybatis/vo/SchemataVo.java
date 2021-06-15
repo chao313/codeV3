@@ -83,7 +83,7 @@ public class SchemataVo {
 
     @Override
     public String toString() {
-        return "SchemataVo{" +
+        return "SchemataBo{" +
                 ", catalogName '" + catalogName + '\'' +
                 ", schemaName '" + schemaName + '\'' +
                 ", defaultCharacterSetName '" + defaultCharacterSetName + '\'' +

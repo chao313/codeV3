@@ -3,9 +3,9 @@ package demo.spring.boot.demospringboot.controller.db;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import demo.spring.boot.demospringboot.config.framework.Code;
-import demo.spring.boot.demospringboot.config.framework.RequestUpdate;
-import demo.spring.boot.demospringboot.config.framework.Response;
+import demo.spring.boot.demospringboot.framework.Code;
+import demo.spring.boot.demospringboot.framework.RequestUpdate;
+import demo.spring.boot.demospringboot.framework.Response;
 import demo.spring.boot.demospringboot.mybatis.service.TablesService;
 import demo.spring.boot.demospringboot.mybatis.vo.TablesMultiTermVo;
 import demo.spring.boot.demospringboot.mybatis.vo.TablesVo;

@@ -306,7 +306,7 @@ public class TablesVo {
 
     @Override
     public String toString() {
-        return "TablesVo{" +
+        return "TablesBo{" +
                 ", tableCatalog '" + tableCatalog + '\'' +
                 ", tableSchema '" + tableSchema + '\'' +
                 ", tableName '" + tableName + '\'' +

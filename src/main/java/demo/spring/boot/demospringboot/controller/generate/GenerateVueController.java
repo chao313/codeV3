@@ -1,6 +1,6 @@
 package demo.spring.boot.demospringboot.controller.generate;
 
-import demo.spring.boot.demospringboot.config.framework.Response;
+import demo.spring.boot.demospringboot.framework.Response;
 import demo.spring.boot.demospringboot.parse.mysql.parse.vo.mysql.GenerateFileJava;
 import demo.spring.boot.demospringboot.parse.mysql.parse.vo.mysql.GenerateFileVue;
 import demo.spring.boot.demospringboot.parse.mysql.parse.vo.mysql.ftl.java.AllJavaFtl;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

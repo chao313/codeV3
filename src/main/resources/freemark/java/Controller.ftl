@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import demo.spring.boot.demospringboot.config.framework.Code;
-import demo.spring.boot.demospringboot.config.framework.Response;
-import demo.spring.boot.demospringboot.config.framework.RequestUpdate;
+import demo.spring.boot.demospringboot.framework.Code;
+import demo.spring.boot.demospringboot.framework.Response;
+import demo.spring.boot.demospringboot.framework.RequestUpdate;
 import org.apache.commons.lang3.StringUtils;
 import ${allJavaFtl.voFtl.packageName}.${allJavaFtl.voFtl.className};
 import ${allJavaFtl.serviceFtl.packageName}.${allJavaFtl.serviceFtl.className};

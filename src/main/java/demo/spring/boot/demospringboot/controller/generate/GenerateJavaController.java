@@ -1,7 +1,7 @@
 package demo.spring.boot.demospringboot.controller.generate;
 
-import demo.spring.boot.demospringboot.config.framework.Code;
-import demo.spring.boot.demospringboot.config.framework.Response;
+import demo.spring.boot.demospringboot.framework.Code;
+import demo.spring.boot.demospringboot.framework.Response;
 import demo.spring.boot.demospringboot.parse.mysql.parse.vo.mysql.GenerateFileJava;
 import demo.spring.boot.demospringboot.parse.mysql.parse.vo.mysql.ftl.java.AllJavaFtl;
 import demo.spring.boot.demospringboot.util.ZipUtils;

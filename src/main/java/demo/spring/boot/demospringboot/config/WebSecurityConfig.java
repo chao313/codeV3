@@ -1,6 +1,6 @@
 package demo.spring.boot.demospringboot.config;
 
-import demo.spring.boot.demospringboot.config.framework.Response;
+import demo.spring.boot.demospringboot.framework.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

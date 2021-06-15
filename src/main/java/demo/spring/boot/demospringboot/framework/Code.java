@@ -1,4 +1,4 @@
-package demo.spring.boot.demospringboot.config.framework;
+package demo.spring.boot.demospringboot.framework;
 
 public interface Code {
 

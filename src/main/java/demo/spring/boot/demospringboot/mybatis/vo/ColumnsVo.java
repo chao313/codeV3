@@ -291,7 +291,7 @@ public class ColumnsVo {
 
     @Override
     public String toString() {
-        return "ColumnsVo{" +
+        return "ColumnsBo{" +
                 ", tableCatalog '" + tableCatalog + '\'' +
                 ", tableSchema '" + tableSchema + '\'' +
                 ", tableName '" + tableName + '\'' +

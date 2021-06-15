@@ -1,6 +1,6 @@
 package demomaster.vo;
 
-import demo.spring.boot.demospringboot.config.framework.MultiTerm;
+import demo.spring.boot.demospringboot.framework.MultiTerm;
 
 /**
  * 表名称      :t_dao

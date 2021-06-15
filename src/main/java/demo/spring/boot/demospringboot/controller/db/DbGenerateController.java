@@ -1,7 +1,7 @@
 package demo.spring.boot.demospringboot.controller.db;
 
-import demo.spring.boot.demospringboot.config.framework.Code;
-import demo.spring.boot.demospringboot.config.framework.Response;
+import demo.spring.boot.demospringboot.framework.Code;
+import demo.spring.boot.demospringboot.framework.Response;
 import demo.spring.boot.demospringboot.mybatis.service.ColumnsService;
 import demo.spring.boot.demospringboot.mybatis.service.SchemataService;
 import demo.spring.boot.demospringboot.mybatis.service.TablesService;

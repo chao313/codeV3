@@ -1,6 +1,6 @@
 package demo.spring.boot.demospringboot.mybatis.vo;
 
-import demo.spring.boot.demospringboot.config.framework.MultiTerm;
+import demo.spring.boot.demospringboot.framework.MultiTerm;
 
 /**
  * 表名称      :SCHEMATA
