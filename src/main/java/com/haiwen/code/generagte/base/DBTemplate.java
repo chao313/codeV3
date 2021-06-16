@@ -1,11 +1,15 @@
-package com.haiwen.code.generagte.core.bo.jdbc;
+package com.haiwen.code.generagte.base;
 
 import com.haiwen.code.generagte.base.extend.ConnectionCache;
+import com.haiwen.code.generagte.core.bo.jdbc.DbConnProperties;
 import com.haiwen.code.generagte.util.AwareUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.function.Function;
 
 /**
@@ -28,7 +32,7 @@ public class DBTemplate {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    public static <R> R executeQuery(String sql, Function<ResultSet, R> function, DbConnProperties dbConnProperties)
+    public static <R> R executeQuery(DbConnProperties dbConnProperties, String sql, Function<ResultSet, R> function)
             throws Exception {
         ConnectionCache connectionCache = AwareUtil.applicationContext.getBean(ConnectionCache.class);
         Connection conn = connectionCache.getFromCache(dbConnProperties);
@@ -43,7 +47,7 @@ public class DBTemplate {
     /**
      * 执行 添加-更新-删除 操作
      */
-    public static int executeInsertUpdateDelete(String sql, DbConnProperties dbConnProperties)
+    public static int executeInsertUpdateDelete(DbConnProperties dbConnProperties, String sql)
             throws Exception {
         ConnectionCache connectionCache = AwareUtil.applicationContext.getBean(ConnectionCache.class);
         Connection conn = connectionCache.getFromCache(dbConnProperties);
@@ -58,7 +62,7 @@ public class DBTemplate {
     /**
      * 执行sql -> 只返回执行成功与否
      */
-    public static boolean execute(String sql, DbConnProperties dbConnProperties)
+    public static boolean execute(DbConnProperties dbConnProperties, String sql)
             throws Exception {
         ConnectionCache connectionCache = AwareUtil.applicationContext.getBean(ConnectionCache.class);
         Connection conn = connectionCache.getFromCache(dbConnProperties);

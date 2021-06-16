@@ -1,4 +1,4 @@
-package demo.spring.boot.demospringboot.controller.db;
+package com.haiwen.code.generagte.core.db.mybatis.controller;
 
 
 import com.github.pagehelper.PageHelper;
@@ -6,9 +6,9 @@ import com.github.pagehelper.PageInfo;
 import demo.spring.boot.demospringboot.framework.Code;
 import demo.spring.boot.demospringboot.framework.RequestUpdate;
 import demo.spring.boot.demospringboot.framework.Response;
-import demo.spring.boot.demospringboot.mybatis.service.SchemataService;
-import demo.spring.boot.demospringboot.mybatis.vo.SchemataMultiTermVo;
-import demo.spring.boot.demospringboot.mybatis.vo.SchemataVo;
+import demo.spring.boot.demospringboot.mybatis.service.TablesService;
+import demo.spring.boot.demospringboot.mybatis.vo.TablesMultiTermVo;
+import demo.spring.boot.demospringboot.mybatis.vo.TablesVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/SchemataController")
+@RequestMapping(value = "/TablesController")
 @Slf4j
-public class SchemataController {
+public class TablesController {
 
     @Autowired
-    private SchemataService service;
+    private TablesService service;
 
     /**
      * 插入一条记录: 请求体是json
@@ -33,7 +33,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/insert")
-    public Response insert(@RequestBody SchemataVo vo) {
+    public Response insert(@RequestBody TablesVo vo) {
         Response response = new Response();
         try {
             Boolean result = service.insert(vo);
@@ -58,7 +58,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/inserts")
-    public Response insert(@RequestBody List<SchemataVo> vos) {
+    public Response insert(@RequestBody List<TablesVo> vos) {
         Response response = new Response();
         try {
             Boolean result = service.insert(vos);
@@ -84,10 +84,10 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/queryBase")
-    public Response queryBase(@RequestBody SchemataVo query) {
+    public Response queryBase(@RequestBody TablesVo query) {
         Response response = new Response();
         try {
-            List<SchemataVo> result = service.queryBase(query);
+            List<TablesVo> result = service.queryBase(query);
             response.setCode(Code.System.OK);
             response.setContent(result);
             log.info("success result -> {} ", result);
@@ -112,7 +112,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/queryBasePageHelper")
-    public Response queryBasePageHelper(@RequestBody SchemataVo query,
+    public Response queryBasePageHelper(@RequestBody TablesVo query,
                                         @RequestParam(value = "pageNum", defaultValue = "1", required = false) Integer pageNum,
                                         @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
                                         @RequestParam(value = "order", required = false) String order) {
@@ -122,7 +122,7 @@ public class SchemataController {
             if (StringUtils.isNotBlank(order)) {
                 PageHelper.orderBy(order);
             }
-            List<SchemataVo> result = service.queryBase(query);
+            List<TablesVo> result = service.queryBase(query);
             PageInfo pageInfo = new PageInfo(result);
             response.setCode(Code.System.OK);
             response.setContent(pageInfo);
@@ -148,7 +148,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/queryMultiTermPageHelper")
-    public Response queryMultiTermPageHelper(@RequestBody SchemataMultiTermVo query,
+    public Response queryMultiTermPageHelper(@RequestBody TablesMultiTermVo query,
                                              @RequestParam(value = "pageNum", defaultValue = "1", required = false) Integer pageNum,
                                              @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
                                              @RequestParam(value = "order", required = false) String order) {
@@ -158,7 +158,7 @@ public class SchemataController {
             if (StringUtils.isNotBlank(order)) {
                 PageHelper.orderBy(order);
             }
-            List<SchemataVo> result = service.queryMultiTerm(query);
+            List<TablesVo> result = service.queryMultiTerm(query);
             PageInfo pageInfo = new PageInfo(result);
             response.setCode(Code.System.OK);
             response.setContent(pageInfo);
@@ -185,7 +185,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/updateBase")
-    public Response updateBase(@RequestBody RequestUpdate<SchemataVo, SchemataVo> update) {
+    public Response updateBase(@RequestBody RequestUpdate<TablesVo, TablesVo> update) {
         Response response = new Response();
         try {
             Boolean result = service.updateBase(update.getSource(), update.getTarget());
@@ -213,7 +213,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/updateBaseIncludeNull")
-    public Response updateBaseIncludeNull(@RequestBody RequestUpdate<SchemataVo, SchemataVo> update) {
+    public Response updateBaseIncludeNull(@RequestBody RequestUpdate<TablesVo, TablesVo> update) {
         Response response = new Response();
         try {
             Boolean result = service.updateBaseIncludeNull(update.getSource(), update.getTarget());
@@ -239,7 +239,7 @@ public class SchemataController {
      * content:具体返回值
      */
     @PostMapping(value = "/deleteBase")
-    public Response deleteBase(@RequestBody SchemataVo vo) {
+    public Response deleteBase(@RequestBody TablesVo vo) {
         Response response = new Response();
         try {
             Boolean result = service.deleteBase(vo);
