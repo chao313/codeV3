@@ -1,6 +1,7 @@
 package com.haiwen.code.generagte.helper;
 
 import com.haiwen.code.generagte.core.bo.jdbc.DbConnProperties;
+import com.haiwen.code.generagte.util.AwareUtil;
 
 /**
  * @author dumo
@@ -41,5 +42,23 @@ public class DbConnPropertiesHelper {
                 .append(dbConnProperties.getUsername())
                 .append(dbConnProperties.getPassword());
         return key.toString();
+    }
+
+    /**
+     * 获取配置中的连接信息
+     *
+     * @return
+     */
+    public static DbConnProperties getYmlDbConnProperties() {
+        String url = AwareUtil.environment.getProperty("spring.datasource.url");
+        String username = AwareUtil.environment.getProperty("spring.datasource.username");
+        String password = AwareUtil.environment.getProperty("spring.datasource.password");
+        String driverClassName = AwareUtil.environment.getProperty("spring.datasource.driver-class-name");
+        DbConnProperties dbConnProperties = new DbConnProperties();
+        dbConnProperties.setUrl(url);
+        dbConnProperties.setUsername(username);
+        dbConnProperties.setPassword(password);
+        dbConnProperties.setDriverClassName(driverClassName);
+        return dbConnProperties;
     }
 }

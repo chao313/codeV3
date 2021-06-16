@@ -1,7 +1,6 @@
 package com.haiwen.code.generagte.core.db.mybatis.service;
 
 
-
 import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataMultiTermVo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataVo;
 
@@ -19,43 +18,13 @@ import java.util.List;
  * 表注释      :
  */
 public interface SchemataService {
-
-    /**
-     * insert
-     */
-    boolean insert(SchemataVo vo);
-
-
-    /**
-     * insert vos 批量插入
-     */
-    boolean insert(List<SchemataVo> vos);
-
-
     /**
      * 查询base
      */
-    List<SchemataVo> queryBase(SchemataVo query);
+    List<SchemataVo> querySchemataBase(SchemataVo query);
 
     /**
      * 查询base 多维条件
      */
-    List<SchemataVo> queryMultiTerm(SchemataMultiTermVo query);
-
-    /**
-     * update base (exclude value is null or "")
-     */
-    boolean updateBase(SchemataVo source, SchemataVo target);
-
-    /**
-     * update base (include value is null or "")
-     */
-    boolean updateBaseIncludeNull(SchemataVo source, SchemataVo target);
-
-    /**
-     * 删除base
-     */
-    boolean deleteBase(SchemataVo vo);
-
-
+    List<SchemataVo> querySchemataMultiTerm(SchemataMultiTermVo query);
 }

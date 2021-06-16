@@ -20,40 +20,13 @@ import java.util.List;
 public interface ColumnsService {
 
     /**
-     * insert
-     */
-    boolean insert(ColumnsVo vo);
-
-
-    /**
-     * insert vos 批量插入
-     */
-    boolean insert(List<ColumnsVo> vos);
-
-
-    /**
      * 查询base
      */
-    List<ColumnsVo> queryBase(ColumnsVo query);
+    List<ColumnsVo> queryColumnsBase(ColumnsVo query);
 
     /**
      * 查询base 多维条件
      */
-    List<ColumnsVo> queryMultiTerm(ColumnsMultiTermVo query);
-
-    /**
-     * update base (exclude value is null or "")
-     */
-    boolean updateBase(ColumnsVo source, ColumnsVo target);
-
-    /**
-     * update base (include value is null or "")
-     */
-    boolean updateBaseIncludeNull(ColumnsVo source, ColumnsVo target);
-
-    /**
-     * 删除base
-     */
-    boolean deleteBase(ColumnsVo vo);
+    List<ColumnsVo> queryColumnsMultiTerm(ColumnsMultiTermVo query);
 
 }

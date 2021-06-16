@@ -2,6 +2,7 @@ package com.haiwen.code.generagte.core.db.mybatis.vo;
 
 
 /**
+ * 列信息
  * 表名称      :COLUMNS
  * 表类型      :SYSTEM VIEW
  * 表引擎      :InnoDB

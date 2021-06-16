@@ -19,41 +19,13 @@ import java.util.List;
 public interface TablesService {
 
     /**
-     * insert
-     */
-    boolean insert(TablesVo vo);
-
-
-    /**
-     * insert vos 批量插入
-     */
-    boolean insert(List<TablesVo> vos);
-
-
-    /**
      * 查询base
      */
-    List<TablesVo> queryBase(TablesVo query);
+    List<TablesVo> queryTablesBase(TablesVo query);
 
     /**
      * 查询base 多维条件
      */
-    List<TablesVo> queryMultiTerm(TablesMultiTermVo query);
-
-    /**
-     * update base (exclude value is null or "")
-     */
-    boolean updateBase(TablesVo source, TablesVo target);
-
-    /**
-     * update base (include value is null or "")
-     */
-    boolean updateBaseIncludeNull(TablesVo source, TablesVo target);
-
-    /**
-     * 删除base
-     */
-    boolean deleteBase(TablesVo vo);
-
+    List<TablesVo> queryTablesMultiTerm(TablesMultiTermVo query);
 
 }

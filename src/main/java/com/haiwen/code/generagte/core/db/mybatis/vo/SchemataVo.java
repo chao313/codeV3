@@ -2,6 +2,7 @@ package com.haiwen.code.generagte.core.db.mybatis.vo;
 
 
 /**
+ * 数据库信息
  * 表名称      :SCHEMATA
  * 表类型      :SYSTEM VIEW
  * 表引擎      :MEMORY

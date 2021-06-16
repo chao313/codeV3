@@ -20,16 +20,6 @@ import java.util.List;
 public interface TablesDAO {
 
     /**
-     * insert
-     */
-    int insert(TablesVo vo);
-
-    /**
-     * insert vos 批量插入
-     */
-    int inserts(@Param(value = "vos") List<TablesVo> vos);
-
-    /**
      * 查询base
      */
     List<TablesVo> queryBase(TablesVo query);
@@ -38,21 +28,5 @@ public interface TablesDAO {
      * 查询base 多维条件
      */
     List<TablesVo> queryMultiTerm(TablesMultiTermVo query);
-
-    /**
-     * update base (exclude value is null or "")
-     */
-    int updateBase(@Param(value = "source") TablesVo source, @Param(value = "target") TablesVo target);
-
-
-    /**
-     * update base (include value is null or "")
-     */
-    int updateBaseIncludeNull(@Param(value = "source") TablesVo source, @Param(value = "target") TablesVo target);
-
-    /**
-     * 删除base
-     */
-    int deleteBase(TablesVo vo);
 
 }

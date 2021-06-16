@@ -18,17 +18,6 @@ import java.util.List;
  * 表注释      :
  */
 public interface ColumnsDAO {
-
-    /**
-     * insert
-     */
-    int insert(ColumnsVo vo);
-
-    /**
-     * insert vos 批量插入
-     */
-    int inserts(@Param(value = "vos") List<ColumnsVo> vos);
-
     /**
      * 查询base
      */
@@ -39,20 +28,5 @@ public interface ColumnsDAO {
      */
     List<ColumnsVo> queryMultiTerm(ColumnsMultiTermVo query);
 
-    /**
-     * update base (exclude value is null or "")
-     */
-    int updateBase(@Param(value = "source") ColumnsVo source, @Param(value = "target") ColumnsVo target);
-
-
-    /**
-     * update base (include value is null or "")
-     */
-    int updateBaseIncludeNull(@Param(value = "source") ColumnsVo source, @Param(value = "target") ColumnsVo target);
-
-    /**
-     * 删除base
-     */
-    int deleteBase(ColumnsVo vo);
 
 }

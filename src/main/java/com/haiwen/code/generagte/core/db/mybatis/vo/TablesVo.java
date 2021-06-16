@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 
 
 /**
+ * 数据表信息
  * 表名称      :TABLES
  * 表类型      :SYSTEM VIEW
  * 表引擎      :MEMORY

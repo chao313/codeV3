@@ -20,16 +20,6 @@ import java.util.List;
 public interface SchemataDAO {
 
     /**
-     * insert
-     */
-    int insert(SchemataVo vo);
-
-    /**
-     * insert vos 批量插入
-     */
-    int inserts(@Param(value = "vos") List<SchemataVo> vos);
-
-    /**
      * 查询base
      */
     List<SchemataVo> queryBase(SchemataVo query);
@@ -38,21 +28,5 @@ public interface SchemataDAO {
      * 查询base 多维条件
      */
     List<SchemataVo> queryMultiTerm(SchemataMultiTermVo query);
-
-    /**
-     * update base (exclude value is null or "")
-     */
-    int updateBase(@Param(value = "source") SchemataVo source, @Param(value = "target") SchemataVo target);
-
-
-    /**
-     * update base (include value is null or "")
-     */
-    int updateBaseIncludeNull(@Param(value = "source") SchemataVo source, @Param(value = "target") SchemataVo target);
-
-    /**
-     * 删除base
-     */
-    int deleteBase(SchemataVo vo);
 
 }
