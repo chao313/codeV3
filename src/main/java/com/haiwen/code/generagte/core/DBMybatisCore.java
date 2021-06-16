@@ -1,7 +1,5 @@
 package com.haiwen.code.generagte.core;
 
-import com.haiwen.code.generagte.base.extend.SqlSessionFactoryCache;
-import com.haiwen.code.generagte.core.bo.jdbc.DbConnProperties;
 import com.haiwen.code.generagte.core.db.mybatis.dao.ColumnsDAO;
 import com.haiwen.code.generagte.core.db.mybatis.dao.SchemataDAO;
 import com.haiwen.code.generagte.core.db.mybatis.dao.TablesDAO;
@@ -9,8 +7,6 @@ import com.haiwen.code.generagte.core.db.mybatis.service.ColumnsService;
 import com.haiwen.code.generagte.core.db.mybatis.service.SchemataService;
 import com.haiwen.code.generagte.core.db.mybatis.service.TablesService;
 import com.haiwen.code.generagte.core.db.mybatis.vo.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -20,29 +16,20 @@ import java.util.List;
  * @description: 对外开放的核心包
  * @date 2021/6/16 10:11 上午
  */
-@Component
 public class DBMybatisCore implements TablesService, SchemataService, ColumnsService {
 
-    @Autowired
-    private SqlSessionFactoryCache sqlSessionFactoryCache;
+    private SchemataDAO schemataDAO;
 
-    public DBMybatisCore initDb(DbConnProperties dbConnProperties) throws Exception {
-        ColumnsDAO columnsDAO = sqlSessionFactoryCache.getMapper(dbConnProperties, ColumnsDAO.class);
-        SchemataDAO schemataDAO = sqlSessionFactoryCache.getMapper(dbConnProperties, SchemataDAO.class);
-        TablesDAO tablesDAO = sqlSessionFactoryCache.getMapper(dbConnProperties, TablesDAO.class);
+    private TablesDAO tablesDAO;
+
+    private ColumnsDAO columnsDAO;
+
+
+    public DBMybatisCore(SchemataDAO schemataDAO, TablesDAO tablesDAO, ColumnsDAO columnsDAO) {
         this.columnsDAO = columnsDAO;
         this.schemataDAO = schemataDAO;
         this.tablesDAO = tablesDAO;
-        return this;
     }
-
-    @Autowired
-    private SchemataDAO schemataDAO;
-    @Autowired
-    private TablesDAO tablesDAO;
-    @Autowired
-    private ColumnsDAO columnsDAO;
-
 
     /**
      * 查询base

@@ -1,7 +1,7 @@
 package com.haiwen.code.generagte;
 
+import com.haiwen.code.generagte.base.extend.DBMybatisCoreCache;
 import com.haiwen.code.generagte.base.extend.SqlSessionFactoryCache;
-import com.haiwen.code.generagte.core.DBMybatisCore;
 import com.haiwen.code.generagte.core.bo.jdbc.DbConnProperties;
 import com.haiwen.code.generagte.core.db.mybatis.dao.TablesDAO;
 import com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo;
@@ -23,7 +23,7 @@ public class MyBatisTest {
     private SqlSessionFactoryCache sqlSessionFactoryCache;
 
     @Autowired
-    private DBMybatisCore dbMybatisCore;
+    private DBMybatisCoreCache dbMybatisCoreCache;
 
 
     /**
@@ -45,7 +45,7 @@ public class MyBatisTest {
     @Test
     public void DBMybatisCoreTest() throws Exception {
         DbConnProperties dbConnProperties = this.getDbConnProperties();
-        List<TablesVo> tablesVos = dbMybatisCore.initDb(dbConnProperties).queryTablesBase(null);
+        List<TablesVo> tablesVos = dbMybatisCoreCache.getFromCache(dbConnProperties).queryTablesBase(null);
         log.info("tablesVos:{}", tablesVos);
 
     }
@@ -53,7 +53,7 @@ public class MyBatisTest {
 
     private DbConnProperties getDbConnProperties() {
         DbConnProperties dbConnProperties = new DbConnProperties();
-        dbConnProperties.setUrl("jdbc:mysql://127.0.0.1:7001/work_ui?useUnicode=true&characterEncoding=utf8");
+        dbConnProperties.setUrl("jdbc:mysql://127.0.0.1:3306/work_ui?useUnicode=true&characterEncoding=utf8");
         dbConnProperties.setDriverClassName("com.mysql.jdbc.Driver");
         dbConnProperties.setPassword("123456");
         dbConnProperties.setUsername("root");
