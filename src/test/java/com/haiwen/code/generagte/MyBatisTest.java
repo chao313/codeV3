@@ -2,9 +2,9 @@ package com.haiwen.code.generagte;
 
 import com.haiwen.code.generagte.base.extend.DBMybatisCoreCache;
 import com.haiwen.code.generagte.base.extend.SqlSessionFactoryCache;
+import com.haiwen.code.generagte.core.bo.TablesBo;
 import com.haiwen.code.generagte.core.bo.jdbc.DbConnProperties;
 import com.haiwen.code.generagte.core.db.mybatis.dao.TablesDAO;
-import com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,8 +33,8 @@ public class MyBatisTest {
     public void DaoTest() throws Exception {
         DbConnProperties dbConnProperties = this.getDbConnProperties();
         TablesDAO tablesDAO = sqlSessionFactoryCache.getMapper(dbConnProperties, TablesDAO.class);
-        List<TablesVo> tablesVos = tablesDAO.queryBase(null);
-        log.info("tablesVos:{}", tablesVos);
+        List<TablesBo> tablesBos = tablesDAO.queryBase(null);
+        log.info("tablesBos:{}", tablesBos);
 
     }
 
@@ -45,8 +45,8 @@ public class MyBatisTest {
     @Test
     public void DBMybatisCoreTest() throws Exception {
         DbConnProperties dbConnProperties = this.getDbConnProperties();
-        List<TablesVo> tablesVos = dbMybatisCoreCache.getFromCache(dbConnProperties).queryTablesBase(null);
-        log.info("tablesVos:{}", tablesVos);
+        List<TablesBo> tablesBos = dbMybatisCoreCache.getFromCache(dbConnProperties).queryTablesBase(null);
+        log.info("tablesBos:{}", tablesBos);
 
     }
 

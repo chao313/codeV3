@@ -8,7 +8,7 @@
 //import demo.spring.boot.demospringboot.framework.Response;
 //import demo.spring.boot.demospringboot.mybatis.service.ColumnsService;
 //import demo.spring.boot.demospringboot.mybatis.vo.ColumnsMultiTermVo;
-//import demo.spring.boot.demospringboot.mybatis.vo.ColumnsVo;
+//import demo.spring.boot.demospringboot.mybatis.vo.ColumnsBo;
 //import lombok.extern.slf4j.Slf4j;
 //import org.apache.commons.lang3.StringUtils;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/insert")
-//    public Response insert(@RequestBody ColumnsVo vo) {
+//    public Response insert(@RequestBody ColumnsBo vo) {
 //        Response response = new Response();
 //        try {
 //            Boolean result = service.insert(vo);
@@ -58,7 +58,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/inserts")
-//    public Response insert(@RequestBody List<ColumnsVo> vos) {
+//    public Response insert(@RequestBody List<ColumnsBo> vos) {
 //        Response response = new Response();
 //        try {
 //            Boolean result = service.insert(vos);
@@ -84,10 +84,10 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/queryBase")
-//    public Response queryBase(@RequestBody ColumnsVo query) {
+//    public Response queryBase(@RequestBody ColumnsBo query) {
 //        Response response = new Response();
 //        try {
-//            List<ColumnsVo> result = service.queryBase(query);
+//            List<ColumnsBo> result = service.queryBase(query);
 //            response.setCode(Code.System.OK);
 //            response.setContent(result);
 //            log.info("success result -> {} ", result);
@@ -112,7 +112,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/queryBasePageHelper")
-//    public Response queryBasePageHelper(@RequestBody ColumnsVo query,
+//    public Response queryBasePageHelper(@RequestBody ColumnsBo query,
 //                                        @RequestParam(value = "pageNum", defaultValue = "1", required = false) Integer pageNum,
 //                                        @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
 //                                        @RequestParam(value = "order", required = false) String order) {
@@ -122,7 +122,7 @@
 //            if (StringUtils.isNotBlank(order)) {
 //                PageHelper.orderBy(order);
 //            }
-//            List<ColumnsVo> result = service.queryBase(query);
+//            List<ColumnsBo> result = service.queryBase(query);
 //            PageInfo pageInfo = new PageInfo(result);
 //            response.setCode(Code.System.OK);
 //            response.setContent(pageInfo);
@@ -158,7 +158,7 @@
 //            if (StringUtils.isNotBlank(order)) {
 //                PageHelper.orderBy(order);
 //            }
-//            List<ColumnsVo> result = service.queryMultiTerm(query);
+//            List<ColumnsBo> result = service.queryMultiTerm(query);
 //            PageInfo pageInfo = new PageInfo(result);
 //            response.setCode(Code.System.OK);
 //            response.setContent(pageInfo);
@@ -185,7 +185,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/updateBase")
-//    public Response updateBase(@RequestBody RequestUpdate<ColumnsVo, ColumnsVo> update) {
+//    public Response updateBase(@RequestBody RequestUpdate<ColumnsBo, ColumnsBo> update) {
 //        Response response = new Response();
 //        try {
 //            Boolean result = service.updateBase(update.getSource(), update.getTarget());
@@ -213,7 +213,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/updateBaseIncludeNull")
-//    public Response updateBaseIncludeNull(@RequestBody RequestUpdate<ColumnsVo, ColumnsVo> update) {
+//    public Response updateBaseIncludeNull(@RequestBody RequestUpdate<ColumnsBo, ColumnsBo> update) {
 //        Response response = new Response();
 //        try {
 //            Boolean result = service.updateBaseIncludeNull(update.getSource(), update.getTarget());
@@ -239,7 +239,7 @@
 //     * content:具体返回值
 //     */
 //    @PostMapping(value = "/deleteBase")
-//    public Response deleteBase(@RequestBody ColumnsVo vo) {
+//    public Response deleteBase(@RequestBody ColumnsBo vo) {
 //        Response response = new Response();
 //        try {
 //            Boolean result = service.deleteBase(vo);

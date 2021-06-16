@@ -1,8 +1,8 @@
 package com.haiwen.code.generagte.core.db.mybatis.service;
 
 
+import com.haiwen.code.generagte.core.bo.SchemataBo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataMultiTermVo;
-import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataVo;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ public interface SchemataService {
     /**
      * 查询base
      */
-    List<SchemataVo> querySchemataBase(SchemataVo query);
+    List<SchemataBo> querySchemataBase(SchemataBo query);
 
     /**
      * 查询base 多维条件
      */
-    List<SchemataVo> querySchemataMultiTerm(SchemataMultiTermVo query);
+    List<SchemataBo> querySchemataMultiTerm(SchemataMultiTermVo query);
 }

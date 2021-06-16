@@ -1,9 +1,8 @@
 package com.haiwen.code.generagte.core.db.mybatis.dao;
 
 
+import com.haiwen.code.generagte.core.bo.SchemataBo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataMultiTermVo;
-import com.haiwen.code.generagte.core.db.mybatis.vo.SchemataVo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,11 +21,11 @@ public interface SchemataDAO {
     /**
      * 查询base
      */
-    List<SchemataVo> queryBase(SchemataVo query);
+    List<SchemataBo> queryBase(SchemataBo query);
 
     /**
      * 查询base 多维条件
      */
-    List<SchemataVo> queryMultiTerm(SchemataMultiTermVo query);
+    List<SchemataBo> queryMultiTerm(SchemataMultiTermVo query);
 
 }

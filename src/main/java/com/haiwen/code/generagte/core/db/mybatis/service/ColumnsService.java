@@ -1,8 +1,8 @@
 package com.haiwen.code.generagte.core.db.mybatis.service;
 
 
+import com.haiwen.code.generagte.core.bo.ColumnsBo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.ColumnsMultiTermVo;
-import com.haiwen.code.generagte.core.db.mybatis.vo.ColumnsVo;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ public interface ColumnsService {
     /**
      * 查询base
      */
-    List<ColumnsVo> queryColumnsBase(ColumnsVo query);
+    List<ColumnsBo> queryColumnsBase(ColumnsBo query);
 
     /**
      * 查询base 多维条件
      */
-    List<ColumnsVo> queryColumnsMultiTerm(ColumnsMultiTermVo query);
+    List<ColumnsBo> queryColumnsMultiTerm(ColumnsMultiTermVo query);
 
 }

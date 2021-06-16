@@ -1,8 +1,8 @@
 package com.haiwen.code.generagte.core.db.mybatis.service;
 
 
+import com.haiwen.code.generagte.core.bo.TablesBo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.TablesMultiTermVo;
-import com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ public interface TablesService {
     /**
      * 查询base
      */
-    List<TablesVo> queryTablesBase(TablesVo query);
+    List<TablesBo> queryTablesBase(TablesBo query);
 
     /**
      * 查询base 多维条件
      */
-    List<TablesVo> queryTablesMultiTerm(TablesMultiTermVo query);
+    List<TablesBo> queryTablesMultiTerm(TablesMultiTermVo query);
 
 }

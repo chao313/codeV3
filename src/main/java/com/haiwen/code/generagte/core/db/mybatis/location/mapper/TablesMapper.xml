@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.haiwen.code.generagte.core.db.mybatis.dao.TablesDAO">
 
-    <resultMap id="resultMap" type="com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo">
+    <resultMap id="resultMap" type="com.haiwen.code.generagte.core.bo.TablesBo">
         <result column="TABLE_CATALOG" property="tableCatalog"/>
         <result column="TABLE_SCHEMA" property="tableSchema"/>
         <result column="TABLE_NAME" property="tableName"/>
@@ -27,8 +27,8 @@
     </resultMap>
 
     <select id="queryBase" resultMap="resultMap"
-            resultType="com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo"
-            parameterType="com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo">
+            resultType="com.haiwen.code.generagte.core.bo.TablesBo"
+            parameterType="com.haiwen.code.generagte.core.bo.TablesBo">
         SELECT
         `TABLE_CATALOG`,
         `TABLE_SCHEMA`,
@@ -121,7 +121,7 @@
     </select>
 
     <select id="queryMultiTerm" resultMap="resultMap"
-            resultType="com.haiwen.code.generagte.core.db.mybatis.vo.TablesVo"
+            resultType="com.haiwen.code.generagte.core.bo.TablesBo"
             parameterType="com.haiwen.code.generagte.core.db.mybatis.vo.TablesMultiTermVo">
         SELECT
         `TABLE_CATALOG`,

@@ -1,5 +1,8 @@
 package com.haiwen.code.generagte.core;
 
+import com.haiwen.code.generagte.core.bo.ColumnsBo;
+import com.haiwen.code.generagte.core.bo.SchemataBo;
+import com.haiwen.code.generagte.core.bo.TablesBo;
 import com.haiwen.code.generagte.core.db.mybatis.dao.ColumnsDAO;
 import com.haiwen.code.generagte.core.db.mybatis.dao.SchemataDAO;
 import com.haiwen.code.generagte.core.db.mybatis.dao.TablesDAO;
@@ -35,7 +38,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base
      */
     @Override
-    public List<ColumnsVo> queryColumnsBase(ColumnsVo query) {
+    public List<ColumnsBo> queryColumnsBase(ColumnsBo query) {
 
         return columnsDAO.queryBase(query);
 
@@ -45,7 +48,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base 多维条件
      */
     @Override
-    public List<ColumnsVo> queryColumnsMultiTerm(ColumnsMultiTermVo query) {
+    public List<ColumnsBo> queryColumnsMultiTerm(ColumnsMultiTermVo query) {
 
         return columnsDAO.queryMultiTerm(query);
 
@@ -56,7 +59,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base
      */
     @Override
-    public List<SchemataVo> querySchemataBase(SchemataVo query) {
+    public List<SchemataBo> querySchemataBase(SchemataBo query) {
 
         return schemataDAO.queryBase(query);
 
@@ -66,7 +69,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base 多维条件
      */
     @Override
-    public List<SchemataVo> querySchemataMultiTerm(SchemataMultiTermVo query) {
+    public List<SchemataBo> querySchemataMultiTerm(SchemataMultiTermVo query) {
 
         return schemataDAO.queryMultiTerm(query);
 
@@ -77,7 +80,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base
      */
     @Override
-    public List<TablesVo> queryTablesBase(TablesVo query) {
+    public List<TablesBo> queryTablesBase(TablesBo query) {
 
         return tablesDAO.queryBase(query);
 
@@ -87,7 +90,7 @@ public class DBMybatisCore implements TablesService, SchemataService, ColumnsSer
      * 查询base 多维条件
      */
     @Override
-    public List<TablesVo> queryTablesMultiTerm(TablesMultiTermVo query) {
+    public List<TablesBo> queryTablesMultiTerm(TablesMultiTermVo query) {
 
         return tablesDAO.queryMultiTerm(query);
 

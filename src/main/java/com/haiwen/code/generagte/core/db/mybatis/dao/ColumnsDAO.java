@@ -1,9 +1,8 @@
 package com.haiwen.code.generagte.core.db.mybatis.dao;
 
 
+import com.haiwen.code.generagte.core.bo.ColumnsBo;
 import com.haiwen.code.generagte.core.db.mybatis.vo.ColumnsMultiTermVo;
-import com.haiwen.code.generagte.core.db.mybatis.vo.ColumnsVo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,12 +20,12 @@ public interface ColumnsDAO {
     /**
      * 查询base
      */
-    List<ColumnsVo> queryBase(ColumnsVo query);
+    List<ColumnsBo> queryBase(ColumnsBo query);
 
     /**
      * 查询base 多维条件
      */
-    List<ColumnsVo> queryMultiTerm(ColumnsMultiTermVo query);
+    List<ColumnsBo> queryMultiTerm(ColumnsMultiTermVo query);
 
 
 }
