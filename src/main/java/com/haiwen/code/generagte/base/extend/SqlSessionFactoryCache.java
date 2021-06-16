@@ -20,8 +20,18 @@ import javax.sql.DataSource;
 @Component
 public class SqlSessionFactoryCache extends ConcurrentCacheTemplate<DbConnProperties, SqlSessionFactoryBean> {
 
+
+    //MyBatis 配置文件的路径
+    private static String CONFIG_LOCATION = "com/haiwen/code/generagte/core/db/mybatis/location/config/mybatis-config.xml";
+
+    //mapper 对应的XML 文件的路径
+    private static String MAPPER_LOCATION = "com/haiwen/code/generagte/core/db/mybatis/location/mapper/*.xml";
+
     @Autowired
     private DataSourceCache dataSourceCache;
+
+    @Autowired
+    private SqlSessionFactoryCache sqlSessionFactoryCache;
 
     @Override
     protected SqlSessionFactoryBean getInstance(DbConnProperties dbConnProperties) throws Exception {
@@ -29,9 +39,9 @@ public class SqlSessionFactoryCache extends ConcurrentCacheTemplate<DbConnProper
         DataSource dataSource = dataSourceCache.getFromCache(dbConnProperties);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         // 设置MyBatis 配置文件的路径
-        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("com/haiwen/code/generagte/core/db/mybatis/location/config/mybatis-config.xml"));
+        sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(CONFIG_LOCATION));
         // 设置mapper 对应的XML 文件的路径
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("com/haiwen/code/generagte/core/db/mybatis/location/mapper/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(MAPPER_LOCATION));
         // 设置数据源
         sqlSessionFactoryBean.setDataSource(dataSource);
         // 设置mapper 接口所在的包
@@ -46,5 +56,16 @@ public class SqlSessionFactoryCache extends ConcurrentCacheTemplate<DbConnProper
     @Override
     protected void close(SqlSessionFactoryBean sqlSessionFactoryBean) throws Exception {
 
+    }
+
+    /**
+     * 额外拓展的根据数据源获取Mapper的方法
+     *
+     * @param dbConnProperties
+     * @param type
+     * @param <T>
+     */
+    public <T> T getMapper(DbConnProperties dbConnProperties, Class<T> type) throws Exception {
+        return sqlSessionFactoryCache.getFromCache(dbConnProperties).getObject().openSession().getMapper(type);
     }
 }
